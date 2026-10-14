@@ -41,4 +41,16 @@ export const updateCartQuantity = (productId, quantity) =>
 export const removeFromCart = (productId) => api.delete(`/cart/${productId}`);
 export const getCartCount = () => api.get('/cart/count');
 
+// -----------------------------------------------------------
+// ORDERS
+// -----------------------------------------------------------
+export const createPaymentOrder = (shippingAddress) =>
+    api.post('/orders/create-payment-order', { shippingAddress });
+
+export const verifyPayment = (payload) => api.post('/orders/verify-payment', payload);
+
+export const getMyOrders = () => api.get('/orders');
+export const getOrderById = (id) => api.get(`/orders/${id}`);
+export const updateOrderStatus = (id, status) => api.patch(`/orders/${id}/status`, { status });
+
 export default api;

@@ -46,7 +46,6 @@ const Navbar = () => {
                         <span className="text-lg font-bold text-slate-900">ShopKart</span>
                     </Link>
 
-                    {/* Desktop Links */}
                     <div className="hidden md:flex items-center gap-1">
                         <NavLink to="/home" className={linkClass}>
                             Home
@@ -74,9 +73,11 @@ const Navbar = () => {
                                 )}
                             </span>
                         </NavLink>
+                        <NavLink to="/orders" className={linkClass}>
+                            Orders
+                        </NavLink>
                     </div>
 
-                    {/* Right side */}
                     <div className="hidden md:flex items-center gap-3">
                         {user ? (
                             <>
@@ -102,7 +103,6 @@ const Navbar = () => {
                         )}
                     </div>
 
-                    {/* Mobile toggle */}
                     <button
                         className="md:hidden p-2 rounded-lg hover:bg-slate-100 relative"
                         onClick={() => setMobileOpen((v) => !v)}
@@ -137,7 +137,6 @@ const Navbar = () => {
                     </button>
                 </div>
 
-                {/* Mobile Menu */}
                 {mobileOpen && (
                     <div className="md:hidden pb-4 flex flex-col gap-1 border-t border-slate-100 pt-3 animate-fade-in">
                         <NavLink
@@ -181,6 +180,13 @@ const Navbar = () => {
                                     </span>
                                 )}
                             </span>
+                        </NavLink>
+                        <NavLink
+                            to="/orders"
+                            className={linkClass}
+                            onClick={() => setMobileOpen(false)}
+                        >
+                            Orders
                         </NavLink>
                         {user ? (
                             <button

@@ -12,12 +12,11 @@ const CartContext = createContext(null);
 export const CartProvider = ({ children }) => {
     const { user } = useAuth();
 
-    const [cart, setCart] = useState([]); // [{ product, quantity }]
+    const [cart, setCart] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
-    const [mutating, setMutating] = useState({}); // { [productId]: true }
+    const [mutating, setMutating] = useState({});
 
-    // ----- Load on user change -----
     const refreshCart = useCallback(async () => {
         if (!user) {
             setCart([]);
@@ -39,7 +38,6 @@ export const CartProvider = ({ children }) => {
         refreshCart();
     }, [refreshCart]);
 
-    // ----- Helpers -----
     const setMutatingFor = (id, value) =>
         setMutating((prev) => {
             const next = { ...prev };
@@ -50,7 +48,6 @@ export const CartProvider = ({ children }) => {
 
     const isMutating = (productId) => Boolean(mutating[productId]);
 
-    // ----- Add -----
     const addProduct = async (productId) => {
         setMutatingFor(productId, true);
         try {
@@ -64,10 +61,8 @@ export const CartProvider = ({ children }) => {
         }
     };
 
-    // ----- Update quantity -----
     const updateQuantity = async (productId, quantity) => {
         setMutatingFor(productId, true);
-        // Optimistic update
         const prev = cart;
         setCart((items) =>
             items.map((i) => (i.product._id === productId ? { ...i, quantity } : i)),
@@ -77,14 +72,13 @@ export const CartProvider = ({ children }) => {
             setCart(res.data.cart || []);
             return { success: true };
         } catch (err) {
-            setCart(prev); // rollback
+            setCart(prev);
             throw err;
         } finally {
             setMutatingFor(productId, false);
         }
     };
 
-    // ----- Remove -----
     const removeProduct = async (productId) => {
         setMutatingFor(productId, true);
         const prev = cart;
@@ -94,15 +88,17 @@ export const CartProvider = ({ children }) => {
             setCart(res.data.cart || []);
             return { success: true };
         } catch (err) {
-            setCart(prev); // rollback
+            setCart(prev);
             throw err;
         } finally {
             setMutatingFor(productId, false);
         }
     };
 
-    // ----- Derived values (NOT stored in DB) -----
-    const itemCount = cart.length; // distinct products
+    // 🆕 Called after successful payment verification
+    const clearCartLocal = () => setCart([]);
+
+    const itemCount = cart.length;
     const totalUnits = useMemo(() => cart.reduce((sum, item) => sum + item.quantity, 0), [cart]);
     const subtotal = useMemo(
         () => cart.reduce((sum, item) => sum + (item.product?.price || 0) * item.quantity, 0),
@@ -132,6 +128,7 @@ export const CartProvider = ({ children }) => {
                 isMutating,
                 getQuantity,
                 isInCart,
+                clearCartLocal,
             }}
         >
             {children}
