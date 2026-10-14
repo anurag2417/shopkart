@@ -52,7 +52,7 @@ const Home = () => {
     );
 
     return (
-        <div className="min-h-screen w-full bg-slate-50 dark:bg-ink-950 text-slate-900 dark:text-white">
+        <div className="min-h-screen w-full bg-slate-50 dark:bg-ink-950 dark:bg-ink-950 text-slate-900 dark:text-white dark:text-white">
             <Navbar />
 
             <main className="w-full px-4 sm:px-6 lg:px-10 py-6 sm:py-10">
@@ -135,7 +135,7 @@ const Home = () => {
                 {/* ───── CATEGORY RAIL ───── */}
                 <section className="mt-10">
                     <div className="flex items-end justify-between mb-4">
-                        <h2 className="text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                        <h2 className="text-sm font-semibold text-slate-500 dark:text-slate-400 dark:text-slate-400 uppercase tracking-wider">
                             Shop by category
                         </h2>
                         <Link
@@ -151,7 +151,7 @@ const Home = () => {
                 {/* ───── ACCOUNT + QUICK LINKS ───── */}
                 <section className="mt-10 grid grid-cols-1 lg:grid-cols-3 gap-6">
                     <div className="card p-6 lg:col-span-2">
-                        <h2 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
+                        <h2 className="text-lg font-semibold text-slate-900 dark:text-white dark:text-white mb-4">
                             Your account
                         </h2>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -174,7 +174,7 @@ const Home = () => {
                     </div>
 
                     <Stagger className="card p-6 flex flex-col gap-2">
-                        <h2 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
+                        <h2 className="text-lg font-semibold text-slate-900 dark:text-white dark:text-white mb-4">
                             Quick links
                         </h2>
                         <QuickLink to="/products" label="Browse products" />
@@ -188,10 +188,10 @@ const Home = () => {
                 <section className="mt-12">
                     <div className="flex items-end justify-between mb-5">
                         <div>
-                            <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
+                            <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white dark:text-white">
                                 Trending now
                             </h2>
-                            <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
+                            <p className="text-sm text-slate-500 dark:text-slate-400 dark:text-slate-400 mt-1">
                                 Top picks across the catalog
                             </p>
                         </div>
@@ -218,7 +218,7 @@ const Home = () => {
                         </div>
                     ) : trending.length === 0 ? (
                         <div className="card p-8 text-center">
-                            <p className="text-slate-500 dark:text-slate-400">
+                            <p className="text-slate-500 dark:text-slate-400 dark:text-slate-400">
                                 Nothing to show yet. Check back soon.
                             </p>
                         </div>
@@ -238,8 +238,8 @@ const Home = () => {
 /* ---------- subcomponents ---------- */
 
 const InfoRow = ({ label, value }) => (
-    <div className="px-4 py-3 rounded-lg bg-slate-50 dark:bg-ink-800">
-        <p className="text-xs text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wide">
+    <div className="px-4 py-3 rounded-lg bg-slate-50 dark:bg-ink-950 dark:bg-ink-800">
+        <p className="text-xs text-slate-500 dark:text-slate-400 dark:text-slate-400 font-medium uppercase tracking-wide">
             {label}
         </p>
         <p className="text-sm text-slate-800 dark:text-white font-medium mt-1 truncate">
@@ -252,7 +252,7 @@ const QuickLink = ({ to, label, badge = 0 }) => (
     <StaggerItem>
         <Link
             to={to}
-            className="px-4 py-3 rounded-lg bg-slate-50 hover:bg-slate-100 dark:bg-ink-800 dark:hover:bg-ink-700 text-slate-700 dark:text-slate-200 font-medium text-sm flex items-center justify-between transition-colors"
+            className="px-4 py-3 rounded-lg bg-slate-50 dark:bg-ink-950 hover:bg-slate-100 dark:bg-ink-800 dark:hover:bg-ink-700 text-slate-700 dark:text-slate-200 font-medium text-sm flex items-center justify-between transition-colors"
         >
             <span className="flex items-center gap-2">
                 {label}

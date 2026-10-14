@@ -42,7 +42,7 @@ const CartItem = ({ item }) => {
     const lineTotal = product.price * quantity;
 
     return (
-        <div className="flex flex-col sm:flex-row gap-4 p-4 sm:p-5 bg-white rounded-2xl border border-slate-100 shadow-sm">
+        <div className="flex flex-col sm:flex-row gap-4 p-4 sm:p-5 bg-white dark:bg-ink-900 rounded-2xl border border-slate-100 dark:border-ink-800 shadow-sm">
             {/* Image */}
             <Link
                 to={`/products/${product._id}`}
@@ -63,11 +63,13 @@ const CartItem = ({ item }) => {
                 <div className="flex items-start justify-between gap-3">
                     <div className="min-w-0">
                         <Link to={`/products/${product._id}`}>
-                            <h3 className="font-semibold text-slate-900 truncate hover:text-brand-600 transition-colors">
+                            <h3 className="font-semibold text-slate-900 dark:text-white truncate hover:text-brand-600 transition-colors">
                                 {product.name}
                             </h3>
                         </Link>
-                        <p className="text-xs text-slate-500 mt-0.5">{product.category}</p>
+                        <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                            {product.category}
+                        </p>
                     </div>
 
                     <button
@@ -103,7 +105,7 @@ const CartItem = ({ item }) => {
                         >
                             −
                         </button>
-                        <span className="w-10 h-9 flex items-center justify-center text-sm font-semibold text-slate-900 border-x border-slate-200">
+                        <span className="w-10 h-9 flex items-center justify-center text-sm font-semibold text-slate-900 dark:text-white border-x border-slate-200">
                             {quantity}
                         </span>
                         <button
@@ -117,7 +119,7 @@ const CartItem = ({ item }) => {
                     </div>
 
                     {/* Line total */}
-                    <p className="text-base sm:text-lg font-bold text-slate-900">
+                    <p className="text-base sm:text-lg font-bold text-slate-900 dark:text-white">
                         ₹{lineTotal.toLocaleString('en-IN')}
                     </p>
                 </div>

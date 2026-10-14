@@ -11,13 +11,15 @@ const Cart = () => {
     const total = subtotal + deliveryFee;
 
     return (
-        <div className="min-h-screen w-full bg-slate-50">
+        <div className="min-h-screen w-full bg-slate-50 dark:bg-ink-950">
             <Navbar />
 
             <main className="w-full px-4 sm:px-6 lg:px-10 py-8">
                 <div className="mb-6">
-                    <h1 className="text-2xl sm:text-3xl font-bold text-slate-900">My Cart</h1>
-                    <p className="text-slate-500 mt-1 text-sm">
+                    <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">
+                        My Cart
+                    </h1>
+                    <p className="text-slate-500 dark:text-slate-400 mt-1 text-sm">
                         {loading
                             ? 'Loading...'
                             : `${totalUnits} item${totalUnits !== 1 ? 's' : ''} in your cart`}
@@ -64,10 +66,10 @@ const Cart = () => {
                                 />
                             </svg>
                         </div>
-                        <h3 className="text-lg font-semibold text-slate-900 mb-1">
+                        <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-1">
                             Unable to load your cart
                         </h3>
-                        <p className="text-slate-500 text-sm mb-5">{error}</p>
+                        <p className="text-slate-500 dark:text-slate-400 text-sm mb-5">{error}</p>
                         <button onClick={refreshCart} className="btn-primary">
                             Try Again
                         </button>
@@ -78,10 +80,10 @@ const Cart = () => {
                 {!loading && !error && cart.length === 0 && (
                     <div className="card p-10 sm:p-16 text-center max-w-lg mx-auto">
                         <div className="text-5xl mb-4">🛒</div>
-                        <h3 className="text-xl font-semibold text-slate-900 mb-2">
+                        <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
                             Your cart is empty
                         </h3>
-                        <p className="text-slate-500 text-sm mb-6">
+                        <p className="text-slate-500 dark:text-slate-400 text-sm mb-6">
                             Looks like you haven't added anything yet.
                         </p>
                         <Link to="/products" className="btn-primary inline-flex">
@@ -108,8 +110,8 @@ const Cart = () => {
 
                         {/* Order Summary */}
                         <aside className="lg:col-span-1">
-                            <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-5 sm:p-6 sticky top-24">
-                                <h2 className="text-lg font-semibold text-slate-900 mb-4">
+                            <div className="bg-white dark:bg-ink-900 rounded-2xl border border-slate-100 dark:border-ink-800 shadow-sm p-5 sm:p-6 sticky top-24">
+                                <h2 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
                                     Order Summary
                                 </h2>
 
@@ -130,14 +132,14 @@ const Cart = () => {
                                             {deliveryFee === 0 ? 'FREE' : `₹${deliveryFee}`}
                                         </span>
                                     </div>
-                                    <div className="border-t border-slate-100 pt-3 flex justify-between text-base font-semibold text-slate-900">
+                                    <div className="border-t border-slate-100 pt-3 flex justify-between text-base font-semibold text-slate-900 dark:text-white">
                                         <span>Total</span>
                                         <span>₹{total.toLocaleString('en-IN')}</span>
                                     </div>
                                 </div>
 
                                 {deliveryFee > 0 && (
-                                    <p className="mt-3 text-xs text-slate-500">
+                                    <p className="mt-3 text-xs text-slate-500 dark:text-slate-400">
                                         Add ₹{(499 - subtotal).toLocaleString('en-IN')} more for
                                         free delivery
                                     </p>

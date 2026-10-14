@@ -57,7 +57,7 @@ const Login = () => {
 
     return (
         <PageTransition>
-            <div className="min-h-screen w-full flex bg-slate-50 dark:bg-ink-950">
+            <div className="min-h-screen w-full flex bg-slate-50 dark:bg-ink-950 dark:bg-ink-950">
                 {/* Left — decorative panel */}
                 <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-brand-600 to-brand-800 dark:from-ink-900 dark:to-ink-800 relative overflow-hidden">
                     <div
@@ -128,7 +128,7 @@ const Login = () => {
                                         />
                                     </svg>
                                 </div>
-                                <span className="text-lg font-bold text-slate-900 dark:text-white">
+                                <span className="text-lg font-bold text-slate-900 dark:text-white dark:text-white">
                                     ShopKart
                                 </span>
                             </Link>
@@ -142,10 +142,10 @@ const Login = () => {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.4, ease: 'easeOut' }}
                         >
-                            <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">
+                            <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white dark:text-white">
                                 Welcome back
                             </h1>
-                            <p className="text-slate-500 dark:text-slate-400 mt-2 text-sm">
+                            <p className="text-slate-500 dark:text-slate-400 dark:text-slate-400 mt-2 text-sm">
                                 Sign in to continue shopping.
                             </p>
                         </motion.div>
@@ -200,7 +200,7 @@ const Login = () => {
                                 {loading ? 'Signing in...' : 'Sign in'}
                             </PressButton>
 
-                            <p className="text-center text-sm text-slate-500 dark:text-slate-400">
+                            <p className="text-center text-sm text-slate-500 dark:text-slate-400 dark:text-slate-400">
                                 New to ShopKart?{' '}
                                 <Link
                                     to="/register"

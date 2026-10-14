@@ -64,7 +64,7 @@ const Register = () => {
 
     return (
         <PageTransition>
-            <div className="min-h-screen w-full flex bg-slate-50 dark:bg-ink-950">
+            <div className="min-h-screen w-full flex bg-slate-50 dark:bg-ink-950 dark:bg-ink-950">
                 {/* Left — form */}
                 <div className="flex-1 flex items-center justify-center px-4 py-10 sm:px-8">
                     <div className="w-full max-w-md">
@@ -86,7 +86,7 @@ const Register = () => {
                                         />
                                     </svg>
                                 </div>
-                                <span className="text-lg font-bold text-slate-900 dark:text-white">
+                                <span className="text-lg font-bold text-slate-900 dark:text-white dark:text-white">
                                     ShopKart
                                 </span>
                             </Link>
@@ -98,10 +98,10 @@ const Register = () => {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.4, ease: 'easeOut' }}
                         >
-                            <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">
+                            <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white dark:text-white">
                                 Create your account
                             </h1>
-                            <p className="text-slate-500 dark:text-slate-400 mt-2 text-sm">
+                            <p className="text-slate-500 dark:text-slate-400 dark:text-slate-400 mt-2 text-sm">
                                 Track orders, save favourites, and check out faster.
                             </p>
                         </motion.div>
@@ -162,7 +162,7 @@ const Register = () => {
                                 {loading ? 'Creating account...' : 'Create account'}
                             </PressButton>
 
-                            <p className="text-center text-sm text-slate-500 dark:text-slate-400">
+                            <p className="text-center text-sm text-slate-500 dark:text-slate-400 dark:text-slate-400">
                                 Already have an account?{' '}
                                 <Link
                                     to="/login"
@@ -172,7 +172,7 @@ const Register = () => {
                                 </Link>
                             </p>
 
-                            <p className="text-center text-xs text-slate-400 dark:text-slate-500 leading-relaxed pt-2">
+                            <p className="text-center text-xs text-slate-400 dark:text-slate-500 dark:text-slate-400 leading-relaxed pt-2">
                                 By continuing you agree to our{' '}
                                 <Link
                                     to="/"

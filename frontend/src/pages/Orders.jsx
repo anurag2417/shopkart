@@ -34,12 +34,14 @@ const Orders = () => {
     }, []);
 
     return (
-        <div className="min-h-screen w-full bg-slate-50">
+        <div className="min-h-screen w-full bg-slate-50 dark:bg-ink-950">
             <Navbar />
 
             <main className="w-full px-4 sm:px-6 lg:px-10 py-8">
-                <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-1">My Orders</h1>
-                <p className="text-slate-500 text-sm mb-6">
+                <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-1">
+                    My Orders
+                </h1>
+                <p className="text-slate-500 dark:text-slate-400 text-sm mb-6">
                     {loading
                         ? 'Loading...'
                         : `${orders.length} order${orders.length !== 1 ? 's' : ''}`}
@@ -59,7 +61,9 @@ const Orders = () => {
 
                 {!loading && error && (
                     <div className="card p-10 text-center max-w-md mx-auto">
-                        <h3 className="text-lg font-semibold text-slate-900 mb-1">{error}</h3>
+                        <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-1">
+                            {error}
+                        </h3>
                         <button onClick={load} className="btn-primary mt-4">
                             Try Again
                         </button>
@@ -69,10 +73,10 @@ const Orders = () => {
                 {!loading && !error && orders.length === 0 && (
                     <div className="card p-10 sm:p-16 text-center max-w-lg mx-auto">
                         <div className="text-5xl mb-4">📦</div>
-                        <h3 className="text-xl font-semibold text-slate-900 mb-2">
+                        <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
                             You have no orders yet
                         </h3>
-                        <p className="text-slate-500 text-sm mb-6">
+                        <p className="text-slate-500 dark:text-slate-400 text-sm mb-6">
                             Start shopping and your orders will appear here.
                         </p>
                         <Link to="/products" className="btn-primary inline-flex">
@@ -87,13 +91,13 @@ const Orders = () => {
                             <div key={order._id} className="card p-5">
                                 <div className="flex flex-wrap items-start justify-between gap-3">
                                     <div>
-                                        <p className="text-xs text-slate-500 uppercase tracking-wide">
+                                        <p className="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wide">
                                             Order
                                         </p>
                                         <p className="text-sm font-mono text-slate-800 mt-0.5">
                                             #{order._id.slice(-8)}
                                         </p>
-                                        <p className="text-xs text-slate-500 mt-1">
+                                        <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
                                             {new Date(order.createdAt).toLocaleDateString('en-IN', {
                                                 day: 'numeric',
                                                 month: 'short',
@@ -142,8 +146,10 @@ const Orders = () => {
 
                                 <div className="mt-4 flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-slate-100">
                                     <div>
-                                        <p className="text-xs text-slate-500">Total</p>
-                                        <p className="text-lg font-bold text-slate-900">
+                                        <p className="text-xs text-slate-500 dark:text-slate-400">
+                                            Total
+                                        </p>
+                                        <p className="text-lg font-bold text-slate-900 dark:text-white">
                                             ₹{order.totalAmount.toLocaleString('en-IN')}
                                         </p>
                                     </div>

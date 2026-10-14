@@ -168,7 +168,7 @@ const Checkout = () => {
     if (cart.length === 0) {
         return (
             <PageTransition>
-                <div className="min-h-screen w-full bg-slate-50">
+                <div className="min-h-screen w-full bg-slate-50 dark:bg-ink-950">
                     <Navbar />
                     <main className="w-full px-4 sm:px-6 lg:px-10 py-12">
                         <motion.div
@@ -178,10 +178,10 @@ const Checkout = () => {
                             className="card p-10 sm:p-16 text-center max-w-lg mx-auto"
                         >
                             <div className="text-5xl mb-4">🛒</div>
-                            <h3 className="text-xl font-semibold text-slate-900 mb-2">
+                            <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
                                 Your cart is empty
                             </h3>
-                            <p className="text-slate-500 text-sm mb-6">
+                            <p className="text-slate-500 dark:text-slate-400 text-sm mb-6">
                                 Add some products before checking out.
                             </p>
                             <Link to="/products" className="btn-primary inline-flex">
@@ -196,11 +196,13 @@ const Checkout = () => {
 
     return (
         <PageTransition>
-            <div className="min-h-screen w-full bg-slate-50">
+            <div className="min-h-screen w-full bg-slate-50 dark:bg-ink-950">
                 <Navbar />
 
                 <main className="w-full px-4 sm:px-6 lg:px-10 py-8">
-                    <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-6">Checkout</h1>
+                    <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-6">
+                        Checkout
+                    </h1>
 
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                         {/* Shipping Form */}
@@ -208,9 +210,9 @@ const Checkout = () => {
                             initial={{ opacity: 0, y: 16 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.4, ease: 'easeOut' }}
-                            className="lg:col-span-2 bg-white rounded-2xl border border-slate-100 shadow-sm p-5 sm:p-6"
+                            className="lg:col-span-2 bg-white dark:bg-ink-900 rounded-2xl border border-slate-100 dark:border-ink-800 shadow-sm p-5 sm:p-6"
                         >
-                            <h2 className="text-lg font-semibold text-slate-900 mb-4">
+                            <h2 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
                                 Shipping Details
                             </h2>
 
@@ -285,8 +287,8 @@ const Checkout = () => {
                             transition={{ duration: 0.4, delay: 0.1, ease: 'easeOut' }}
                             className="lg:col-span-1"
                         >
-                            <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-5 sm:p-6 sticky top-24">
-                                <h2 className="text-lg font-semibold text-slate-900 mb-4">
+                            <div className="bg-white dark:bg-ink-900 rounded-2xl border border-slate-100 dark:border-ink-800 shadow-sm p-5 sm:p-6 sticky top-24">
+                                <h2 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">
                                     Order Summary
                                 </h2>
 
@@ -309,12 +311,12 @@ const Checkout = () => {
                                                 <p className="text-sm font-medium text-slate-800 truncate">
                                                     {item.product.name}
                                                 </p>
-                                                <p className="text-xs text-slate-500">
+                                                <p className="text-xs text-slate-500 dark:text-slate-400">
                                                     {item.quantity} × ₹
                                                     {item.product.price.toLocaleString('en-IN')}
                                                 </p>
                                             </div>
-                                            <p className="text-sm font-semibold text-slate-900">
+                                            <p className="text-sm font-semibold text-slate-900 dark:text-white">
                                                 ₹
                                                 {(
                                                     item.product.price * item.quantity
@@ -341,7 +343,7 @@ const Checkout = () => {
                                             {deliveryFee === 0 ? 'FREE' : `₹${deliveryFee}`}
                                         </span>
                                     </div>
-                                    <div className="border-t border-slate-100 pt-3 flex justify-between text-base font-semibold text-slate-900">
+                                    <div className="border-t border-slate-100 pt-3 flex justify-between text-base font-semibold text-slate-900 dark:text-white">
                                         <span>Total</span>
                                         <span>₹{total.toLocaleString('en-IN')}</span>
                                     </div>

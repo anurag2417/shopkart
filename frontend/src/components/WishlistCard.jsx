@@ -44,13 +44,13 @@ const WishlistCard = ({ product }) => {
 
             <div className="p-4 flex flex-col flex-1">
                 <Link to={`/products/${product._id}`}>
-                    <h3 className="font-semibold text-slate-900 text-sm sm:text-base line-clamp-2 hover:text-brand-600 transition-colors">
+                    <h3 className="font-semibold text-slate-900 dark:text-white text-sm sm:text-base line-clamp-2 hover:text-brand-600 transition-colors">
                         {product.name}
                     </h3>
                 </Link>
 
                 <div className="mt-3 flex items-center justify-between">
-                    <p className="text-lg font-bold text-slate-900">
+                    <p className="text-lg font-bold text-slate-900 dark:text-white">
                         ₹{product.price.toLocaleString('en-IN')}
                     </p>
                     <p

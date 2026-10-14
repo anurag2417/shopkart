@@ -22,7 +22,7 @@ const Navbar = () => {
         `px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
             isActive
                 ? 'bg-brand-50 text-brand-700 dark:bg-ink-800 dark:text-ink-600'
-                : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100 dark:text-slate-300 dark:hover:text-white dark:hover:bg-ink-800'
+                : 'text-slate-600 hover:text-slate-900 dark:text-white hover:bg-slate-100 dark:text-slate-300 dark:hover:text-white dark:hover:bg-ink-800'
         }`;
 
     return (
@@ -50,7 +50,7 @@ const Navbar = () => {
                                 />
                             </svg>
                         </motion.div>
-                        <span className="text-lg font-bold text-slate-900 dark:text-white">
+                        <span className="text-lg font-bold text-slate-900 dark:text-white dark:text-white">
                             ShopKart
                         </span>
                     </Link>
@@ -119,7 +119,7 @@ const Navbar = () => {
                         <ThemeToggle />
                         {user ? (
                             <>
-                                <span className="text-sm text-slate-500 dark:text-slate-400">
+                                <span className="text-sm text-slate-500 dark:text-slate-400 dark:text-slate-400">
                                     Hi,{' '}
                                     <span className="font-medium text-slate-800 dark:text-white">
                                         {user.fullName?.split(' ')[0]}

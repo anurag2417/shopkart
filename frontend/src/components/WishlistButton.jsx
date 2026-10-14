@@ -41,7 +41,7 @@ const WishlistButton = ({ product, variant = 'icon', className = '' }) => {
                 disabled={busy}
                 aria-label={saved ? 'Remove from wishlist' : 'Add to wishlist'}
                 className={`w-9 h-9 rounded-full flex items-center justify-center backdrop-blur bg-white/90 shadow-sm hover:bg-white transition-all duration-200 disabled:opacity-60 ${
-                    saved ? 'text-red-500' : 'text-slate-500 hover:text-red-500'
+                    saved ? 'text-red-500' : 'text-slate-500 dark:text-slate-400 hover:text-red-500'
                 } ${className}`}
             >
                 <svg

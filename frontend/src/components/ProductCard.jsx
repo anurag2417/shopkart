@@ -48,17 +48,17 @@ const ProductCard = ({ product }) => {
 
             <div className="p-4 flex flex-col flex-1">
                 <Link to={`/products/${product._id}`}>
-                    <h3 className="font-semibold text-slate-900 text-sm sm:text-base line-clamp-2 hover:text-brand-600 transition-colors">
+                    <h3 className="font-semibold text-slate-900 dark:text-white text-sm sm:text-base line-clamp-2 hover:text-brand-600 transition-colors">
                         {product.name}
                     </h3>
                 </Link>
 
-                <p className="text-xs text-slate-500 mt-1 line-clamp-2 flex-1">
+                <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 line-clamp-2 flex-1">
                     {product.description}
                 </p>
 
                 <div className="mt-4 flex items-center justify-between">
-                    <p className="text-lg font-bold text-slate-900">
+                    <p className="text-lg font-bold text-slate-900 dark:text-white">
                         ₹{product.price.toLocaleString('en-IN')}
                     </p>
                     <p

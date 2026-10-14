@@ -7,13 +7,15 @@ const Wishlist = () => {
     const { wishlist, loading, error, refreshWishlist } = useWishlist();
 
     return (
-        <div className="min-h-screen w-full bg-slate-50">
+        <div className="min-h-screen w-full bg-slate-50 dark:bg-ink-950">
             <Navbar />
 
             <main className="w-full px-4 sm:px-6 lg:px-10 py-8">
                 <div className="mb-6">
-                    <h1 className="text-2xl sm:text-3xl font-bold text-slate-900">My Wishlist</h1>
-                    <p className="text-slate-500 mt-1 text-sm">
+                    <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">
+                        My Wishlist
+                    </h1>
+                    <p className="text-slate-500 dark:text-slate-400 mt-1 text-sm">
                         {loading
                             ? 'Loading...'
                             : `${wishlist.length} product${wishlist.length !== 1 ? 's' : ''} saved`}
@@ -54,10 +56,10 @@ const Wishlist = () => {
                                 />
                             </svg>
                         </div>
-                        <h3 className="text-lg font-semibold text-slate-900 mb-1">
+                        <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-1">
                             Unable to load wishlist
                         </h3>
-                        <p className="text-slate-500 text-sm mb-5">{error}</p>
+                        <p className="text-slate-500 dark:text-slate-400 text-sm mb-5">{error}</p>
                         <button onClick={refreshWishlist} className="btn-primary">
                             Try Again
                         </button>
@@ -68,10 +70,10 @@ const Wishlist = () => {
                 {!loading && !error && wishlist.length === 0 && (
                     <div className="card p-10 sm:p-16 text-center max-w-lg mx-auto">
                         <div className="text-5xl mb-4">❤️</div>
-                        <h3 className="text-xl font-semibold text-slate-900 mb-2">
+                        <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
                             Your wishlist is empty
                         </h3>
-                        <p className="text-slate-500 text-sm mb-6">
+                        <p className="text-slate-500 dark:text-slate-400 text-sm mb-6">
                             Save products you love and find them here later.
                         </p>
                         <Link to="/products" className="btn-primary inline-flex">

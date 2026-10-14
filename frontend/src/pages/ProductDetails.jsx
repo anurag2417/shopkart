@@ -30,13 +30,13 @@ const ProductDetails = () => {
     }, [id]);
 
     return (
-        <div className="min-h-screen w-full bg-slate-50">
+        <div className="min-h-screen w-full bg-slate-50 dark:bg-ink-950">
             <Navbar />
 
             <main className="w-full px-4 sm:px-6 lg:px-10 py-6 sm:py-8">
                 <button
                     onClick={() => navigate(-1)}
-                    className="inline-flex items-center gap-2 text-sm text-slate-600 hover:text-slate-900 mb-6 transition-colors"
+                    className="inline-flex items-center gap-2 text-sm text-slate-600 hover:text-slate-900 dark:text-white mb-6 transition-colors"
                 >
                     <svg
                         className="w-4 h-4"
@@ -80,7 +80,9 @@ const ProductDetails = () => {
                                 />
                             </svg>
                         </div>
-                        <h3 className="text-lg font-semibold text-slate-900 mb-1">{error}</h3>
+                        <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-1">
+                            {error}
+                        </h3>
                         <Link to="/products" className="btn-primary mt-4 inline-flex">
                             Back to Products
                         </Link>
@@ -108,7 +110,7 @@ const ProductDetails = () => {
                                 {product.category}
                             </span>
 
-                            <h1 className="mt-4 text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900">
+                            <h1 className="mt-4 text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 dark:text-white">
                                 {product.name}
                             </h1>
 
@@ -117,7 +119,7 @@ const ProductDetails = () => {
                             </p>
 
                             <div className="mt-6 flex items-baseline gap-4">
-                                <p className="text-3xl sm:text-4xl font-bold text-slate-900">
+                                <p className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">
                                     ₹{product.price.toLocaleString('en-IN')}
                                 </p>
                             </div>
@@ -140,7 +142,7 @@ const ProductDetails = () => {
                                 <WishlistButton product={product} variant="full" />
                             </div>
 
-                            <div className="mt-6 px-4 py-3 rounded-lg bg-slate-50 text-xs text-slate-500">
+                            <div className="mt-6 px-4 py-3 rounded-lg bg-slate-50 dark:bg-ink-950 text-xs text-slate-500 dark:text-slate-400">
                                 🚚 Free delivery on orders above ₹499 · 🔄 7-day returns
                             </div>
                         </div>

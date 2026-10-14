@@ -102,15 +102,15 @@ const Products = () => {
 
     return (
         <PageTransition>
-            <div className="min-h-screen w-full bg-slate-50">
+            <div className="min-h-screen w-full bg-slate-50 dark:bg-ink-950">
                 <Navbar />
 
                 <main className="w-full px-4 sm:px-6 lg:px-10 py-8">
                     <div className="mb-6">
-                        <h1 className="text-2xl sm:text-3xl font-bold text-slate-900">
+                        <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">
                             All Products
                         </h1>
-                        <p className="text-slate-500 mt-1 text-sm">
+                        <p className="text-slate-500 dark:text-slate-400 mt-1 text-sm">
                             {loading
                                 ? 'Loading...'
                                 : `${products.length} product${products.length !== 1 ? 's' : ''} found`}
@@ -148,10 +148,12 @@ const Products = () => {
                                     />
                                 </svg>
                             </div>
-                            <h3 className="text-lg font-semibold text-slate-900 mb-1">
+                            <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-1">
                                 Something went wrong
                             </h3>
-                            <p className="text-slate-500 text-sm mb-5">{error}</p>
+                            <p className="text-slate-500 dark:text-slate-400 text-sm mb-5">
+                                {error}
+                            </p>
                             <button onClick={loadProducts} className="btn-primary">
                                 Try Again
                             </button>
@@ -175,10 +177,10 @@ const Products = () => {
                                     />
                                 </svg>
                             </div>
-                            <h3 className="text-lg font-semibold text-slate-900 mb-1">
+                            <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-1">
                                 No products found
                             </h3>
-                            <p className="text-slate-500 text-sm">
+                            <p className="text-slate-500 dark:text-slate-400 text-sm">
                                 Try adjusting your search or filter.
                             </p>
                         </div>

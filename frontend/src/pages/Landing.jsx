@@ -46,7 +46,7 @@ const Landing = () => {
     );
 
     return (
-        <div className="min-h-screen w-full bg-slate-50 dark:bg-ink-950 text-slate-900 dark:text-white">
+        <div className="min-h-screen w-full bg-slate-50 dark:bg-ink-950 dark:bg-ink-950 text-slate-900 dark:text-white dark:text-white">
             <LandingNavbar />
 
             {/* ─────────── HERO ─────────── */}
@@ -69,7 +69,7 @@ const Landing = () => {
                                 Now shipping across India
                             </div>
 
-                            <h1 className="land-heading text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight text-slate-900 dark:text-white">
+                            <h1 className="land-heading text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight text-slate-900 dark:text-white dark:text-white">
                                 Everyday things,
                                 <br />
                                 <span className="text-brand-600 dark:text-ink-600">
@@ -105,7 +105,7 @@ const Landing = () => {
                                 </Link>
                                 <a
                                     href="#features"
-                                    className="land-cta inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border border-slate-200 dark:border-ink-800 bg-white dark:bg-ink-900 text-slate-800 dark:text-white font-semibold hover:bg-slate-50 dark:hover:bg-ink-800 transition-all"
+                                    className="land-cta inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border border-slate-200 dark:border-ink-800 bg-white dark:bg-ink-900 text-slate-800 dark:text-white font-semibold hover:bg-slate-50 dark:bg-ink-950 dark:hover:bg-ink-800 transition-all"
                                 >
                                     See how it works
                                 </a>
@@ -176,7 +176,7 @@ const Landing = () => {
             {/* ─────────── CATEGORIES ─────────── */}
             <section
                 id="categories"
-                className="w-full px-4 sm:px-6 lg:px-10 py-20 bg-slate-50 dark:bg-ink-950"
+                className="w-full px-4 sm:px-6 lg:px-10 py-20 bg-slate-50 dark:bg-ink-950 dark:bg-ink-950"
             >
                 <div className="max-w-7xl mx-auto">
                     <SectionHeading
@@ -239,13 +239,13 @@ const Landing = () => {
                                         />
                                     </div>
                                     <div className="p-3 sm:p-4">
-                                        <p className="text-xs text-slate-500 dark:text-slate-400 mb-1">
+                                        <p className="text-xs text-slate-500 dark:text-slate-400 dark:text-slate-400 mb-1">
                                             {p.category}
                                         </p>
                                         <p className="text-sm font-medium text-slate-800 dark:text-white line-clamp-2 group-hover:text-brand-600 dark:group-hover:text-ink-600 transition-colors">
                                             {p.name}
                                         </p>
-                                        <p className="mt-2 text-base font-bold text-slate-900 dark:text-white">
+                                        <p className="mt-2 text-base font-bold text-slate-900 dark:text-white dark:text-white">
                                             ₹{p.price.toLocaleString('en-IN')}
                                         </p>
                                     </div>
@@ -259,10 +259,10 @@ const Landing = () => {
             {/* ─────────── CTA ─────────── */}
             <section
                 id="about"
-                className="w-full px-4 sm:px-6 lg:px-10 py-20 bg-slate-50 dark:bg-ink-950"
+                className="w-full px-4 sm:px-6 lg:px-10 py-20 bg-slate-50 dark:bg-ink-950 dark:bg-ink-950"
             >
                 <div className="max-w-5xl mx-auto text-center">
-                    <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white leading-tight">
+                    <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white dark:text-white leading-tight">
                         Ready when you are.
                     </h2>
                     <p className="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
@@ -278,7 +278,7 @@ const Landing = () => {
                         </Link>
                         <Link
                             to="/login"
-                            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl border border-slate-200 dark:border-ink-800 bg-white dark:bg-ink-900 text-slate-800 dark:text-white font-semibold hover:bg-slate-50 dark:hover:bg-ink-800 transition-all"
+                            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl border border-slate-200 dark:border-ink-800 bg-white dark:bg-ink-900 text-slate-800 dark:text-white font-semibold hover:bg-slate-50 dark:bg-ink-950 dark:hover:bg-ink-800 transition-all"
                         >
                             I already have one
                         </Link>
@@ -307,11 +307,11 @@ const Landing = () => {
                                         />
                                     </svg>
                                 </div>
-                                <span className="text-base font-bold text-slate-900 dark:text-white">
+                                <span className="text-base font-bold text-slate-900 dark:text-white dark:text-white">
                                     ShopKart
                                 </span>
                             </div>
-                            <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                            <p className="text-xs text-slate-500 dark:text-slate-400 dark:text-slate-400 leading-relaxed">
                                 Everyday things, done brilliantly. Made in India.
                             </p>
                         </div>
@@ -346,10 +346,10 @@ const Landing = () => {
                     </div>
 
                     <div className="mt-10 pt-6 border-t border-slate-100 dark:border-ink-800 flex flex-col sm:flex-row justify-between items-center gap-3">
-                        <p className="text-xs text-slate-500 dark:text-slate-400">
+                        <p className="text-xs text-slate-500 dark:text-slate-400 dark:text-slate-400">
                             © {new Date().getFullYear()} ShopKart. All rights reserved.
                         </p>
-                        <p className="text-xs text-slate-500 dark:text-slate-400">
+                        <p className="text-xs text-slate-500 dark:text-slate-400 dark:text-slate-400">
                             Crafted with care in Bengaluru.
                         </p>
                     </div>
@@ -363,8 +363,12 @@ const Landing = () => {
 
 const Stat = ({ value, label }) => (
     <div>
-        <p className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">{value}</p>
-        <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">{label}</p>
+        <p className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white dark:text-white">
+            {value}
+        </p>
+        <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 dark:text-slate-400 mt-1">
+            {label}
+        </p>
     </div>
 );
 
@@ -373,7 +377,7 @@ const SectionHeading = ({ label, title, subtitle }) => (
         <p className="text-sm font-semibold text-brand-600 dark:text-ink-600 uppercase tracking-wider">
             {label}
         </p>
-        <h2 className="mt-3 text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white leading-tight">
+        <h2 className="mt-3 text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white dark:text-white leading-tight">
             {title}
         </h2>
         {subtitle && <p className="mt-3 text-slate-600 dark:text-slate-300">{subtitle}</p>}
@@ -443,7 +447,9 @@ const FeatureCard = ({ icon, title, body }) => {
                     {icons[icon]}
                 </svg>
             </div>
-            <h3 className="text-base font-semibold text-slate-900 dark:text-white mb-2">{title}</h3>
+            <h3 className="text-base font-semibold text-slate-900 dark:text-white dark:text-white mb-2">
+                {title}
+            </h3>
             <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">{body}</p>
         </motion.div>
     );
@@ -451,7 +457,7 @@ const FeatureCard = ({ icon, title, body }) => {
 
 const FooterCol = ({ title, links }) => (
     <div>
-        <h4 className="text-xs font-semibold text-slate-900 dark:text-white uppercase tracking-wider mb-3">
+        <h4 className="text-xs font-semibold text-slate-900 dark:text-white dark:text-white uppercase tracking-wider mb-3">
             {title}
         </h4>
         <ul className="space-y-2">

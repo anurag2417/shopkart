@@ -25,7 +25,7 @@ const OrderSuccess = () => {
     }, [id]);
 
     return (
-        <div className="min-h-screen w-full bg-slate-50">
+        <div className="min-h-screen w-full bg-slate-50 dark:bg-ink-950">
             <Navbar />
 
             <main className="w-full px-4 sm:px-6 lg:px-10 py-8 sm:py-12">
@@ -40,7 +40,9 @@ const OrderSuccess = () => {
                 {!loading && error && (
                     <div className="max-w-lg mx-auto card p-10 text-center">
                         <div className="text-4xl mb-3">😕</div>
-                        <h2 className="text-lg font-semibold text-slate-900 mb-1">{error}</h2>
+                        <h2 className="text-lg font-semibold text-slate-900 dark:text-white mb-1">
+                            {error}
+                        </h2>
                         <Link to="/orders" className="btn-primary inline-flex mt-4">
                             View My Orders
                         </Link>
@@ -66,40 +68,40 @@ const OrderSuccess = () => {
                                     />
                                 </svg>
                             </div>
-                            <h1 className="text-2xl sm:text-3xl font-bold text-slate-900">
+                            <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">
                                 Order Placed Successfully
                             </h1>
-                            <p className="text-slate-500 text-sm mt-2">
+                            <p className="text-slate-500 dark:text-slate-400 text-sm mt-2">
                                 Thank you! Your order has been saved.
                             </p>
 
                             <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3 text-left">
-                                <div className="px-4 py-3 rounded-lg bg-slate-50">
-                                    <p className="text-xs text-slate-500 font-medium uppercase tracking-wide">
+                                <div className="px-4 py-3 rounded-lg bg-slate-50 dark:bg-ink-950">
+                                    <p className="text-xs text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wide">
                                         Order ID
                                     </p>
                                     <p className="text-sm text-slate-800 font-mono mt-1 truncate">
                                         {order._id}
                                     </p>
                                 </div>
-                                <div className="px-4 py-3 rounded-lg bg-slate-50">
-                                    <p className="text-xs text-slate-500 font-medium uppercase tracking-wide">
+                                <div className="px-4 py-3 rounded-lg bg-slate-50 dark:bg-ink-950">
+                                    <p className="text-xs text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wide">
                                         Total Paid
                                     </p>
                                     <p className="text-sm text-slate-800 font-semibold mt-1">
                                         ₹{order.totalAmount.toLocaleString('en-IN')}
                                     </p>
                                 </div>
-                                <div className="px-4 py-3 rounded-lg bg-slate-50">
-                                    <p className="text-xs text-slate-500 font-medium uppercase tracking-wide">
+                                <div className="px-4 py-3 rounded-lg bg-slate-50 dark:bg-ink-950">
+                                    <p className="text-xs text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wide">
                                         Status
                                     </p>
                                     <p className="text-sm text-green-600 font-semibold mt-1">
                                         {order.status}
                                     </p>
                                 </div>
-                                <div className="px-4 py-3 rounded-lg bg-slate-50">
-                                    <p className="text-xs text-slate-500 font-medium uppercase tracking-wide">
+                                <div className="px-4 py-3 rounded-lg bg-slate-50 dark:bg-ink-950">
+                                    <p className="text-xs text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wide">
                                         Payment
                                     </p>
                                     <p className="text-sm text-green-600 font-semibold mt-1">
@@ -110,12 +112,14 @@ const OrderSuccess = () => {
 
                             {/* Items preview */}
                             <div className="mt-6 text-left">
-                                <h2 className="text-sm font-semibold text-slate-900 mb-3">Items</h2>
+                                <h2 className="text-sm font-semibold text-slate-900 dark:text-white mb-3">
+                                    Items
+                                </h2>
                                 <div className="space-y-2">
                                     {order.items.map((item) => (
                                         <div
                                             key={item.product}
-                                            className="flex items-center gap-3 px-3 py-2 rounded-lg bg-slate-50"
+                                            className="flex items-center gap-3 px-3 py-2 rounded-lg bg-slate-50 dark:bg-ink-950"
                                         >
                                             <img
                                                 src={item.image}
@@ -130,11 +134,11 @@ const OrderSuccess = () => {
                                                 <p className="text-sm font-medium text-slate-800 truncate">
                                                     {item.name}
                                                 </p>
-                                                <p className="text-xs text-slate-500">
+                                                <p className="text-xs text-slate-500 dark:text-slate-400">
                                                     Qty {item.quantity}
                                                 </p>
                                             </div>
-                                            <p className="text-sm font-semibold text-slate-900">
+                                            <p className="text-sm font-semibold text-slate-900 dark:text-white">
                                                 ₹
                                                 {(item.price * item.quantity).toLocaleString(
                                                     'en-IN',
