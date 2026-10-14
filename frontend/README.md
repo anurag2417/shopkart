@@ -2,7 +2,7 @@
 
 React + Vite + Tailwind + Framer Motion + GSAP + React Three Fiber.
 
-🌐 **Live:** https://shopkart-yourname.vercel.app
+🌐 **Live:** https://shopkart-delta-eight.vercel.app/
 
 ---
 
@@ -18,19 +18,19 @@ npm run dev                  # :5173 (strict)
 
 ## 📜 Scripts
 
-| Command | Purpose |
-|---|---|
-| `npm run dev` | Vite dev server (:5173) |
-| `npm run build` | Production build → `dist/` |
+| Command           | Purpose                      |
+| ----------------- | ---------------------------- |
+| `npm run dev`     | Vite dev server (:5173)      |
+| `npm run build`   | Production build → `dist/`   |
 | `npm run preview` | Preview the production build |
 
 ---
 
 ## 🔑 Environment Variables
 
-| Key | Required | Notes |
-|---|:---:|---|
-| `VITE_API_URL` | ✅ | Backend URL. Local: `http://localhost:5000`. Prod: Render URL |
+| Key            | Required | Notes                                                         |
+| -------------- | :------: | ------------------------------------------------------------- |
+| `VITE_API_URL` |    ✅    | Backend URL. Local: `http://localhost:5000`. Prod: Render URL |
 
 > ⚠️ Only `VITE_*` variables are exposed to the browser. **Never** put secrets here.
 
@@ -106,35 +106,38 @@ We use **React Context API** — no Redux needed. Four providers wrap the app:
 ```
 
 ### Why Context?
+
 - Cart, wishlist, and auth are **application-level** state
 - Avoids prop drilling through 3 layers
 - Simple mental model for a project this size
 - Redux would be overkill
 
 ### Optimistic updates
+
 Cart and wishlist mutations update local state **immediately**, then call the API. On failure, they **roll back**.
 
 ```js
 // Simplified CartContext pattern
 const removeProduct = async (productId) => {
-  const prev = cart;
-  setCart((items) => items.filter((i) => i.product._id !== productId)); // optimistic
-  try {
-    const res = await removeAPI(productId);
-    setCart(res.data.cart);  // authoritative
-  } catch (err) {
-    setCart(prev);           // rollback
-    throw err;
-  }
+    const prev = cart;
+    setCart((items) => items.filter((i) => i.product._id !== productId)); // optimistic
+    try {
+        const res = await removeAPI(productId);
+        setCart(res.data.cart); // authoritative
+    } catch (err) {
+        setCart(prev); // rollback
+        throw err;
+    }
 };
 ```
 
 ### Derived state
+
 Never stored — always computed:
 
 ```js
 const totalUnits = cart.reduce((s, i) => s + i.quantity, 0);
-const subtotal   = cart.reduce((s, i) => s + i.product.price * i.quantity, 0);
+const subtotal = cart.reduce((s, i) => s + i.product.price * i.quantity, 0);
 ```
 
 ---
@@ -145,9 +148,9 @@ Single Axios instance:
 
 ```js
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || "http://localhost:5000",
-  withCredentials: true, // 🔑 sends the JWT cookie cross-origin
-  headers: { "Content-Type": "application/json" }
+    baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000',
+    withCredentials: true, // 🔑 sends the JWT cookie cross-origin
+    headers: { 'Content-Type': 'application/json' },
 });
 ```
 
@@ -158,6 +161,7 @@ Every endpoint is a named export. Components never build URLs directly.
 ## 🎨 Animation Stack
 
 ### Framer Motion
+
 - `<PageTransition>` wraps every page for entrance/exit fades
 - Toasts animate via `<AnimatePresence>`
 - Card hovers, button presses
@@ -165,17 +169,19 @@ Every endpoint is a named export. Components never build URLs directly.
 - `MotionConfig reducedMotion="user"` respects OS accessibility settings
 
 ### GSAP
+
 - Home hero entrance timeline (sequential reveal)
 - Hero parallax via `ScrollTrigger` scrub
 - Products grid stagger reveal
 - Registered once in `lib/gsap.js`
 
 ### React Three Fiber
+
 - `Hero3D` — floating icosahedron with two directional lights
 - `LazyHero3D` — loads only when:
-  - `prefers-reduced-motion: no-preference`
-  - Screen width ≥ 640px
-  - Uses `React.lazy()` + `<Suspense>` so 3D never blocks first paint
+    - `prefers-reduced-motion: no-preference`
+    - Screen width ≥ 640px
+    - Uses `React.lazy()` + `<Suspense>` so 3D never blocks first paint
 
 ---
 
@@ -223,10 +229,10 @@ Open http://localhost:5173. Register → login → browse → cart → checkout 
 
 ## 🐛 Common Issues
 
-| Issue | Fix |
-|---|---|
-| `ERESOLVE` on install | Ensure `frontend/.npmrc` has `legacy-peer-deps=true` and drei is pinned to `9.114.3` |
-| Port 5174 instead of 5173 | Kill whatever holds 5173, or add 5174 to backend `CLIENT_URL` |
-| 3D hero doesn't render | Check WebGL support; scene is disabled on small screens and reduced-motion |
-| Cart badge doesn't update | Ensure `<CartProvider>` wraps your route component |
-| API requests fail on Vercel | Verify `VITE_API_URL` env is set and redeployed (env changes need a rebuild) |
+| Issue                       | Fix                                                                                  |
+| --------------------------- | ------------------------------------------------------------------------------------ |
+| `ERESOLVE` on install       | Ensure `frontend/.npmrc` has `legacy-peer-deps=true` and drei is pinned to `9.114.3` |
+| Port 5174 instead of 5173   | Kill whatever holds 5173, or add 5174 to backend `CLIENT_URL`                        |
+| 3D hero doesn't render      | Check WebGL support; scene is disabled on small screens and reduced-motion           |
+| Cart badge doesn't update   | Ensure `<CartProvider>` wraps your route component                                   |
+| API requests fail on Vercel | Verify `VITE_API_URL` env is set and redeployed (env changes need a rebuild)         |

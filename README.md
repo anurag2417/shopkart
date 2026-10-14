@@ -4,7 +4,7 @@
 
 ### A full-stack MERN e-commerce application with JWT auth, persistent cart, wishlist, Razorpay payments and order history.
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-Vercel-black?style=for-the-badge&logo=vercel)](https://shopkart-yourname.vercel.app)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Vercel-black?style=for-the-badge&logo=vercel)](https://shopkart-delta-eight.vercel.app/)
 [![API](https://img.shields.io/badge/API-Render-46E3B7?style=for-the-badge&logo=render)](https://shopkart-api-g41f.onrender.com)
 [![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-47A248?style=for-the-badge&logo=mongodb)](https://www.mongodb.com/atlas)
 [![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react)](https://react.dev)
@@ -18,13 +18,13 @@
 
 ## 🌐 Live Deployment
 
-| Layer | URL |
-|---|---|
-| **Frontend** (Vercel) | https://shopkart-yourname.vercel.app |
-| **Backend API** (Render) | https://shopkart-api-g41f.onrender.com |
-| **Health check** | https://shopkart-api-g41f.onrender.com/health |
-| **Database** | MongoDB Atlas (M0 free tier) |
-| **Payments** | Razorpay Test Mode |
+| Layer                    | URL                                           |
+| ------------------------ | --------------------------------------------- |
+| **Frontend** (Vercel)    | https://shopkart-delta-eight.vercel.app/      |
+| **Backend API** (Render) | https://shopkart-api-g41f.onrender.com        |
+| **Health check**         | https://shopkart-api-g41f.onrender.com/health |
+| **Database**             | MongoDB Atlas (M0 free tier)                  |
+| **Payments**             | Razorpay Test Mode                            |
 
 > ⏱️ Render free tier sleeps after 15 min of inactivity. First request after sleep takes ~30s.
 
@@ -37,6 +37,7 @@
 <td width="50%" valign="top">
 
 ### 🔐 Authentication
+
 - Email + password registration
 - bcrypt password hashing (10 rounds)
 - JWT stored in **HttpOnly, Secure, SameSite=None** cookie
@@ -44,6 +45,7 @@
 - Profile, logout, change password
 
 ### 🛍️ Product Catalog
+
 - Full CRUD-ready product model
 - Case-insensitive **search** by name
 - **Category filter** + multi-field **sorting**
@@ -51,6 +53,7 @@
 - Pagination-ready backend (extendable)
 
 ### ❤️ Wishlist
+
 - MongoDB relationship: `Customer.wishlist: [ObjectId ref "Product"]`
 - `populate()` for enriched reads
 - Duplicate prevention (`409 Conflict`)
@@ -61,6 +64,7 @@
 <td width="50%" valign="top">
 
 ### 🛒 Cart
+
 - `Customer.cart: [{ product, quantity }]`
 - Add / increment / set quantity / remove
 - **Stock validation** on every mutation
@@ -69,6 +73,7 @@
 - Persists across refresh and re-login
 
 ### 💳 Checkout & Orders
+
 - Shipping form with client + server validation
 - **Server-owned totals** (never trusts client)
 - Order **snapshots** product name/price/image
@@ -78,6 +83,7 @@
 - Order history with ownership enforcement
 
 ### 🎨 Polish
+
 - Framer Motion page transitions + toasts
 - GSAP hero timeline + scroll parallax + grid stagger
 - React Three Fiber 3D hero (lazy-loaded)
@@ -97,6 +103,7 @@
 <td valign="top" width="33%">
 
 **Backend**
+
 - Node.js 20+
 - Express 4
 - MongoDB + Mongoose 8
@@ -110,6 +117,7 @@
 <td valign="top" width="33%">
 
 **Frontend**
+
 - React 18 + Vite
 - React Router DOM 6
 - Axios (with `withCredentials`)
@@ -122,6 +130,7 @@
 <td valign="top" width="33%">
 
 **Infrastructure**
+
 - MongoDB Atlas (M0)
 - Render (backend Web Service)
 - Vercel (frontend)
@@ -344,13 +353,13 @@ All protected routes require the `token` cookie (set automatically after login).
 
 ### 🔐 Auth — `/customers`
 
-| Method | Endpoint | Auth | Purpose |
-|---|---|:---:|---|
-| `POST` | `/customers/register` | – | Register new customer |
-| `POST` | `/customers/login` | – | Login (sets HttpOnly cookie) |
-| `GET` | `/customers/me` | ✅ | Current user profile |
-| `POST` | `/customers/logout` | ✅ | Clear auth cookie |
-| `PATCH` | `/customers/change-password` | ✅ | Update password |
+| Method  | Endpoint                     | Auth | Purpose                      |
+| ------- | ---------------------------- | :--: | ---------------------------- |
+| `POST`  | `/customers/register`        |  –   | Register new customer        |
+| `POST`  | `/customers/login`           |  –   | Login (sets HttpOnly cookie) |
+| `GET`   | `/customers/me`              |  ✅  | Current user profile         |
+| `POST`  | `/customers/logout`          |  ✅  | Clear auth cookie            |
+| `PATCH` | `/customers/change-password` |  ✅  | Update password              |
 
 <details>
 <summary><b>Example: Register</b></summary>
@@ -368,30 +377,39 @@ Content-Type: application/json
 ```
 
 **201 Created**
+
 ```json
 {
-  "success": true,
-  "message": "Customer registered successfully",
-  "customer": { "_id": "...", "fullName": "John Doe", "email": "john@example.com", "phone": "9876543210" }
+    "success": true,
+    "message": "Customer registered successfully",
+    "customer": {
+        "_id": "...",
+        "fullName": "John Doe",
+        "email": "john@example.com",
+        "phone": "9876543210"
+    }
 }
 ```
 
 **409 Conflict** (duplicate email)
+
 ```json
 { "success": false, "message": "Email already registered" }
 ```
+
 </details>
 
 ### 🛍️ Products — `/products`
 
-| Method | Endpoint | Auth | Purpose |
-|---|---|:---:|---|
-| `POST` | `/products` | – | Create product |
-| `GET` | `/products` | – | List — supports `?search=&category=&sort=` |
-| `GET` | `/products/:id` | – | Single product |
-| `GET` | `/products/categories` | – | Distinct categories |
+| Method | Endpoint               | Auth | Purpose                                    |
+| ------ | ---------------------- | :--: | ------------------------------------------ |
+| `POST` | `/products`            |  –   | Create product                             |
+| `GET`  | `/products`            |  –   | List — supports `?search=&category=&sort=` |
+| `GET`  | `/products/:id`        |  –   | Single product                             |
+| `GET`  | `/products/categories` |  –   | Distinct categories                        |
 
 **Query examples**
+
 ```
 GET /products?search=keyboard
 GET /products?category=Electronics
@@ -401,33 +419,33 @@ GET /products?sort=price_asc|price_desc|name_asc|name_desc
 
 ### ❤️ Wishlist — `/wishlist` (all protected)
 
-| Method | Endpoint | Purpose |
-|---|---|---|
-| `GET` | `/wishlist` | Current user's populated wishlist |
-| `POST` | `/wishlist/:productId` | Add (409 if already present) |
-| `DELETE` | `/wishlist/:productId` | Remove |
-| `PATCH` | `/wishlist/:productId/toggle` | Toggle (returns `{ saved: boolean }`) |
-| `GET` | `/wishlist/count` | Count for navbar badge |
+| Method   | Endpoint                      | Purpose                               |
+| -------- | ----------------------------- | ------------------------------------- |
+| `GET`    | `/wishlist`                   | Current user's populated wishlist     |
+| `POST`   | `/wishlist/:productId`        | Add (409 if already present)          |
+| `DELETE` | `/wishlist/:productId`        | Remove                                |
+| `PATCH`  | `/wishlist/:productId/toggle` | Toggle (returns `{ saved: boolean }`) |
+| `GET`    | `/wishlist/count`             | Count for navbar badge                |
 
 ### 🛒 Cart — `/cart` (all protected)
 
-| Method | Endpoint | Purpose |
-|---|---|---|
-| `GET` | `/cart` | Current user's populated cart |
-| `POST` | `/cart/:productId` | Add or increment |
-| `PATCH` | `/cart/:productId` | Set quantity (`{ "quantity": 3 }`) |
-| `DELETE` | `/cart/:productId` | Remove |
-| `GET` | `/cart/count` | Total units |
+| Method   | Endpoint           | Purpose                            |
+| -------- | ------------------ | ---------------------------------- |
+| `GET`    | `/cart`            | Current user's populated cart      |
+| `POST`   | `/cart/:productId` | Add or increment                   |
+| `PATCH`  | `/cart/:productId` | Set quantity (`{ "quantity": 3 }`) |
+| `DELETE` | `/cart/:productId` | Remove                             |
+| `GET`    | `/cart/count`      | Total units                        |
 
 ### 💳 Orders — `/orders` (all protected)
 
-| Method | Endpoint | Purpose |
-|---|---|---|
-| `POST` | `/orders/create-payment-order` | Validate cart, create ShopKart + Razorpay order |
-| `POST` | `/orders/verify-payment` | Verify signature, mark PAID, clear cart |
-| `GET` | `/orders` | Current user's orders |
-| `GET` | `/orders/:id` | Single order (ownership enforced) |
-| `PATCH` | `/orders/:id/status` | Bonus: manual status progression |
+| Method  | Endpoint                       | Purpose                                         |
+| ------- | ------------------------------ | ----------------------------------------------- |
+| `POST`  | `/orders/create-payment-order` | Validate cart, create ShopKart + Razorpay order |
+| `POST`  | `/orders/verify-payment`       | Verify signature, mark PAID, clear cart         |
+| `GET`   | `/orders`                      | Current user's orders                           |
+| `GET`   | `/orders/:id`                  | Single order (ownership enforced)               |
+| `PATCH` | `/orders/:id/status`           | Bonus: manual status progression                |
 
 <details>
 <summary><b>Example: Create payment order</b></summary>
@@ -450,16 +468,18 @@ Cookie: token=...
 ```
 
 **201 Created**
+
 ```json
 {
-  "success": true,
-  "shopKartOrderId": "67abc...",
-  "razorpayOrderId": "order_ABC123",
-  "amount": 749700,
-  "currency": "INR",
-  "key": "rzp_test_xxxxxxxx"
+    "success": true,
+    "shopKartOrderId": "67abc...",
+    "razorpayOrderId": "order_ABC123",
+    "amount": 749700,
+    "currency": "INR",
+    "key": "rzp_test_xxxxxxxx"
 }
 ```
+
 </details>
 
 ---
@@ -494,12 +514,12 @@ sequenceDiagram
 
 ### Test Cards
 
-| Network | Number |
-|---|---|
-| Visa | `4100 2800 0000 1007` |
+| Network    | Number                |
+| ---------- | --------------------- |
+| Visa       | `4100 2800 0000 1007` |
 | Mastercard | `5555 5100 0008 1006` |
-| RuPay | `6527 6589 0000 1005` |
-| Amex | `3402 560004 01007` |
+| RuPay      | `6527 6589 0000 1005` |
+| Amex       | `3402 560004 01007`   |
 
 CVV: any 3 digits · Expiry: any future date · OTP: `1234`
 
@@ -528,15 +548,15 @@ CVV: any 3 digits · Expiry: any future date · OTP: `1234`
 3. **Build Command**: `npm install`
 4. **Start Command**: `npm start`
 5. **Environment Variables**:
-   ```
-   NODE_ENV=production
-   MONGO_URI=mongodb://...
-   JWT_SECRET=<long random string>
-   JWT_EXPIRES_IN=7d
-   CLIENT_URL=http://localhost:5173,https://shopkart-<you>.vercel.app
-   RAZORPAY_KEY_ID=rzp_test_xxx
-   RAZORPAY_KEY_SECRET=xxx
-   ```
+    ```
+    NODE_ENV=production
+    MONGO_URI=mongodb://...
+    JWT_SECRET=<long random string>
+    JWT_EXPIRES_IN=7d
+    CLIENT_URL=http://localhost:5173,https://shopkart-<you>.vercel.app
+    RAZORPAY_KEY_ID=rzp_test_xxx
+    RAZORPAY_KEY_SECRET=xxx
+    ```
 
 ### Frontend → Vercel
 
@@ -546,9 +566,9 @@ CVV: any 3 digits · Expiry: any future date · OTP: `1234`
 4. **Build Command**: `npm run build`
 5. **Output Directory**: `dist`
 6. **Environment Variables**:
-   ```
-   VITE_API_URL=https://shopkart-api-g41f.onrender.com
-   ```
+    ```
+    VITE_API_URL=https://shopkart-api-g41f.onrender.com
+    ```
 
 ### MongoDB Atlas checklist
 
@@ -561,31 +581,35 @@ CVV: any 3 digits · Expiry: any future date · OTP: `1234`
 ## 🧪 Testing
 
 ### Backend
+
 Import `postman/ShopKart.postman_collection.json` into Postman.
 Set collection variable `baseUrl` = `http://localhost:5000`.
 
 ### Frontend
+
 ```bash
 cd frontend
 npm run dev
 ```
+
 Manual smoke test: register → login → browse → wishlist → cart → checkout → Razorpay test payment → orders.
 
 ### Automated (optional CI)
+
 See `.github/workflows/ci.yml` — lints backend and builds frontend on every push.
 
 ---
 
 ## 🐛 Troubleshooting
 
-| Symptom | Fix |
-|---|---|
-| `querySrv EBADRESP` | Use direct MongoDB connection string (see `backend/.env.example`) or add `dns.setServers(["8.8.8.8"])` in `config/db.js` |
-| CORS error on login | Check `CLIENT_URL` on Render contains exact Vercel origin (no trailing slash) |
-| Cookies not set in production | Confirm `NODE_ENV=production` → cookie gets `SameSite=None; Secure` |
-| Vercel 404 on refresh | Confirm `frontend/vercel.json` exists with SPA rewrites |
-| Vercel `ERESOLVE` | Confirm `@react-three/drei@9.114.3` (pinned) and `frontend/.npmrc` has `legacy-peer-deps=true` |
-| Razorpay modal opens but fails | Verify `RAZORPAY_KEY_ID` on Render matches client bundle key |
+| Symptom                        | Fix                                                                                                                      |
+| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
+| `querySrv EBADRESP`            | Use direct MongoDB connection string (see `backend/.env.example`) or add `dns.setServers(["8.8.8.8"])` in `config/db.js` |
+| CORS error on login            | Check `CLIENT_URL` on Render contains exact Vercel origin (no trailing slash)                                            |
+| Cookies not set in production  | Confirm `NODE_ENV=production` → cookie gets `SameSite=None; Secure`                                                      |
+| Vercel 404 on refresh          | Confirm `frontend/vercel.json` exists with SPA rewrites                                                                  |
+| Vercel `ERESOLVE`              | Confirm `@react-three/drei@9.114.3` (pinned) and `frontend/.npmrc` has `legacy-peer-deps=true`                           |
+| Razorpay modal opens but fails | Verify `RAZORPAY_KEY_ID` on Render matches client bundle key                                                             |
 
 ---
 
