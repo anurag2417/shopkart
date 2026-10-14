@@ -171,7 +171,7 @@ const sampleProducts = [
     ),
     P(
         'Cable Management Kit',
-        'Magnetic cable clips, cable sleeves, and velcro ties — 30-piece set.',
+        'Magnetic cable clips, cable sleeves, and velcro ties - 30-piece set.',
         899,
         'Peripherals',
         'https://images.unsplash.com/photo-1587300677063-3231565c98c0?w=1000&q=80',
@@ -262,7 +262,7 @@ const sampleProducts = [
 
     // ─────────── BOOKS (31–40) ───────────
     P(
-        'The Pragmatic Programmer — 20th Anniversary',
+        'The Pragmatic Programmer - 20th Anniversary',
         'Updated edition of the classic guide to software craftsmanship.',
         1499,
         'Books',

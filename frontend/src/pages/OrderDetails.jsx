@@ -161,7 +161,7 @@ const OrderDetails = () => {
                                 <p>{order.shippingAddress.phone}</p>
                                 <p>{order.shippingAddress.addressLine1}</p>
                                 <p>
-                                    {order.shippingAddress.city}, {order.shippingAddress.state} —{' '}
+                                    {order.shippingAddress.city}, {order.shippingAddress.state} -{' '}
                                     {order.shippingAddress.pincode}
                                 </p>
                             </div>

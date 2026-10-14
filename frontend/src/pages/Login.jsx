@@ -20,7 +20,7 @@ const Login = () => {
 
     useEffect(() => {
         if (location.state?.registered) {
-            setSuccess('Account created — sign in to continue.');
+            setSuccess('Account created - sign in to continue.');
         }
         if (location.state?.from) {
             setError('Please sign in to continue.');
@@ -58,7 +58,7 @@ const Login = () => {
     return (
         <PageTransition>
             <div className="min-h-screen w-full flex bg-slate-50 dark:bg-ink-950 dark:bg-ink-950">
-                {/* Left — decorative panel */}
+                {/* Left - decorative panel */}
                 <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-brand-600 to-brand-800 dark:from-ink-900 dark:to-ink-800 relative overflow-hidden">
                     <div
                         className="absolute inset-0 opacity-[0.12]"
@@ -93,7 +93,7 @@ const Login = () => {
                                 Pick up right where you left off.
                             </h2>
                             <p className="mt-4 text-brand-100 dark:text-slate-300 max-w-md">
-                                Your cart, wishlist, and orders are exactly where you left them —
+                                Your cart, wishlist, and orders are exactly where you left them -
                                 across every device you sign in on.
                             </p>
                         </div>
@@ -108,7 +108,7 @@ const Login = () => {
                     </div>
                 </div>
 
-                {/* Right — form */}
+                {/* Right - form */}
                 <div className="flex-1 flex items-center justify-center px-4 py-10 sm:px-8">
                     <div className="w-full max-w-md">
                         <div className="flex items-center justify-between mb-10">

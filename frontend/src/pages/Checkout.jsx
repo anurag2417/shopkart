@@ -102,7 +102,7 @@ const Checkout = () => {
                 },
                 theme: { color: '#2563eb' },
                 handler: async (response) => {
-                    // 🔒 Never trust this callback alone — verify on backend
+                    // 🔒 Never trust this callback alone - verify on backend
                     try {
                         const verifyRes = await verifyPayment({
                             shopKartOrderId,
@@ -134,7 +134,7 @@ const Checkout = () => {
                     ondismiss: () => {
                         setPlacing(false);
                         showToast(
-                            'Checkout closed. Your cart is safe — try again anytime.',
+                            'Checkout closed. Your cart is safe - try again anytime.',
                             'info',
                         );
                     },

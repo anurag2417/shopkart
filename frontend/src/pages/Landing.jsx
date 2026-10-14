@@ -78,7 +78,7 @@ const Landing = () => {
                             </h1>
 
                             <p className="land-sub mt-6 text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-xl leading-relaxed">
-                                Curated audio, apparel, home, and everyday essentials — from makers
+                                Curated audio, apparel, home, and everyday essentials - from makers
                                 we'd buy from ourselves. Free delivery over ₹499, easy 7-day
                                 returns.
                             </p>

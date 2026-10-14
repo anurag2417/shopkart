@@ -7,7 +7,7 @@ const orderItemSchema = new mongoose.Schema(
             ref: 'Product',
             required: true,
         },
-        // 🔒 Snapshot — captured at purchase time
+        // 🔒 Snapshot - captured at purchase time
         name: { type: String, required: true },
         price: { type: Number, required: true },
         image: { type: String },

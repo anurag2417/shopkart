@@ -127,7 +127,7 @@ const ProductDetails = () => {
                             <div className="mt-4">
                                 {product.stock > 0 ? (
                                     <p className="text-sm text-green-600 font-medium">
-                                        ✓ In stock — {product.stock} unit
+                                        ✓ In stock - {product.stock} unit
                                         {product.stock !== 1 ? 's' : ''} available
                                     </p>
                                 ) : (

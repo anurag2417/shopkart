@@ -42,7 +42,7 @@ const corsOptions = {
             return callback(null, true);
         }
 
-        // 🚫 Do NOT throw — silently deny. Throwing causes a 500 error
+        // 🚫 Do NOT throw - silently deny. Throwing causes a 500 error
         // which the browser reports as a CORS failure.
         console.warn(`⚠️ CORS blocked origin: ${origin}`);
         return callback(null, false);

@@ -1,7 +1,7 @@
 {
     "name": "shopkart-backend",
     "version": "1.0.0",
-    "description": "ShopKart backend — MERN e-commerce API",
+    "description": "ShopKart backend - MERN e-commerce API",
     "main": "index.js",
     "type": "module",
     "scripts": {

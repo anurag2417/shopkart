@@ -86,7 +86,7 @@ const Account = () => {
                                                           year: 'numeric',
                                                       },
                                                   )
-                                                : '—'}
+                                                : '-'}
                                         </span>
                                     </div>
                                 </div>
@@ -106,7 +106,7 @@ const Account = () => {
                                     <button
                                         onClick={() =>
                                             showToast(
-                                                'Profile editing coming soon — stay tuned!',
+                                                'Profile editing coming soon - stay tuned!',
                                                 'info',
                                             )
                                         }
@@ -132,7 +132,7 @@ const Account = () => {
                                                           year: 'numeric',
                                                       },
                                                   )
-                                                : '—'
+                                                : '-'
                                         }
                                     />
                                 </div>
@@ -275,7 +275,7 @@ const InfoField = ({ label, value }) => (
             {label}
         </p>
         <p className="text-sm text-slate-800 dark:text-white font-medium mt-1 truncate">
-            {value || '—'}
+            {value || '-'}
         </p>
     </div>
 );

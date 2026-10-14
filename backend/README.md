@@ -1,4 +1,4 @@
-# ShopKart — Backend API
+# ShopKart - Backend API
 
 Node.js + Express + MongoDB backend for ShopKart.
 
@@ -24,10 +24,10 @@ node seedProducts.js
 
 ## 📜 Scripts
 
-| Command | Purpose |
-|---|---|
-| `npm run dev` | Start with Nodemon |
-| `npm start` | Start production server |
+| Command                | Purpose                       |
+| ---------------------- | ----------------------------- |
+| `npm run dev`          | Start with Nodemon            |
+| `npm start`            | Start production server       |
 | `node seedProducts.js` | Reset + seed 10 demo products |
 
 ---
@@ -57,22 +57,23 @@ backend/
 
 ## 🔐 Environment Variables
 
-| Key | Required | Notes |
-|---|:---:|---|
-| `PORT` | – | Defaults to `5000`; Render sets it automatically |
-| `NODE_ENV` | ✅ | `development` / `production` — toggles cookie `Secure`/`SameSite` |
-| `MONGO_URI` | ✅ | Atlas connection string (SRV or direct) |
-| `JWT_SECRET` | ✅ | Long random string |
-| `JWT_EXPIRES_IN` | – | Default `7d` |
-| `CLIENT_URL` | ✅ | Comma-separated list of allowed origins |
-| `RAZORPAY_KEY_ID` | ✅ | Test Mode key |
-| `RAZORPAY_KEY_SECRET` | ✅ | Test Mode secret (never sent to client) |
+| Key                   | Required | Notes                                                             |
+| --------------------- | :------: | ----------------------------------------------------------------- |
+| `PORT`                |    –     | Defaults to `5000`; Render sets it automatically                  |
+| `NODE_ENV`            |    ✅    | `development` / `production` - toggles cookie `Secure`/`SameSite` |
+| `MONGO_URI`           |    ✅    | Atlas connection string (SRV or direct)                           |
+| `JWT_SECRET`          |    ✅    | Long random string                                                |
+| `JWT_EXPIRES_IN`      |    –     | Default `7d`                                                      |
+| `CLIENT_URL`          |    ✅    | Comma-separated list of allowed origins                           |
+| `RAZORPAY_KEY_ID`     |    ✅    | Test Mode key                                                     |
+| `RAZORPAY_KEY_SECRET` |    ✅    | Test Mode secret (never sent to client)                           |
 
 ---
 
 ## 🗄️ Models
 
 ### Customer
+
 ```js
 {
   fullName: String (required),
@@ -86,6 +87,7 @@ backend/
 ```
 
 ### Product
+
 ```js
 {
   name: String (required),
@@ -99,6 +101,7 @@ backend/
 ```
 
 ### Order
+
 ```js
 {
   user: ObjectId ref "Customer",
@@ -127,10 +130,10 @@ backend/
 - Delivered via **HttpOnly cookie** `token`
 - Verified by `protect` middleware on every protected route
 - Cookie flags:
-  - `httpOnly: true` — JS cannot read (XSS-safe)
-  - `secure: NODE_ENV === "production"`
-  - `sameSite: "none"` in production (cross-site Vercel → Render), `"lax"` in dev
-  - `maxAge: 7 days`
+    - `httpOnly: true` - JS cannot read (XSS-safe)
+    - `secure: NODE_ENV === "production"`
+    - `sameSite: "none"` in production (cross-site Vercel → Render), `"lax"` in dev
+    - `maxAge: 7 days`
 
 ---
 
@@ -138,7 +141,8 @@ backend/
 
 ### Two-step flow
 
-**Step 1 — `POST /orders/create-payment-order`**
+**Step 1 - `POST /orders/create-payment-order`**
+
 - Validates shipping address
 - Loads user's cart with populated products
 - Checks stock for each item
@@ -147,7 +151,8 @@ backend/
 - Creates Razorpay order (`amount` in **paise**)
 - Saves `razorpayOrderId`, returns safe data
 
-**Step 2 — `POST /orders/verify-payment`**
+**Step 2 - `POST /orders/verify-payment`**
+
 - Loads order, checks ownership
 - Recomputes `HMAC-SHA256(order_id|payment_id, KEY_SECRET)`
 - Compares with `razorpay_signature`
@@ -155,6 +160,7 @@ backend/
 - On mismatch: `paymentStatus=FAILED`, cart **not** cleared
 
 ### Why `crypto`, not the browser
+
 The browser can be tampered with. Only the server knows `RAZORPAY_KEY_SECRET`, so only the server can produce a valid HMAC.
 
 ---
@@ -165,8 +171,8 @@ Import `../postman/ShopKart.postman_collection.json`.
 
 1. Set collection variable `baseUrl` = `http://localhost:5000`
 2. Run `POST /customers/register` with a fresh email
-3. Run `POST /customers/login` — cookie `token` is auto-stored
-4. Run `GET /customers/me` — should return the user
+3. Run `POST /customers/login` - cookie `token` is auto-stored
+4. Run `GET /customers/me` - should return the user
 5. Test protected routes with/without the cookie to verify `401`
 
 ---
@@ -174,13 +180,15 @@ Import `../postman/ShopKart.postman_collection.json`.
 ## 🚢 Deployment Notes
 
 ### Render
+
 - **Root Directory**: `backend`
 - **Build**: `npm install`
 - **Start**: `npm start`
 - Environment: `NODE_ENV=production`, all `.env` keys
-- `app.set("trust proxy", 1)` in `index.js` — required for `secure` cookies behind Render's proxy
+- `app.set("trust proxy", 1)` in `index.js` - required for `secure` cookies behind Render's proxy
 
 ### MongoDB Atlas
+
 - Whitelist Render's outbound IPs (or `0.0.0.0/0` for convenience)
 - If your ISP/router blocks SRV lookups, use the **direct connection string** (see `.env.example`)
 

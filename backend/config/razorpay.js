@@ -5,7 +5,7 @@ let razorpayInstance = null;
 /**
  * Lazily create the Razorpay instance on first use.
  * This prevents the server from crashing at import time
- * if env vars are missing — instead, we throw only when
+ * if env vars are missing - instead, we throw only when
  * the payment endpoints are actually hit.
  */
 const getRazorpay = () => {

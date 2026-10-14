@@ -228,7 +228,7 @@ export const verifyPayment = async (req, res) => {
             });
         }
 
-        // 4. ✅ Verified — mark PAID + PLACED
+        // 4. ✅ Verified - mark PAID + PLACED
         order.paymentStatus = 'PAID';
         order.status = 'PLACED';
         order.razorpayPaymentId = razorpay_payment_id;
@@ -338,7 +338,7 @@ export const getOrderById = async (req, res) => {
 };
 
 // -----------------------------------------------------------
-// @desc    Update order status (dev/admin helper — bonus)
+// @desc    Update order status (dev/admin helper - bonus)
 // @route   PATCH /orders/:id/status
 // @access  Protected (temporary)
 // -----------------------------------------------------------

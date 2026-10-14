@@ -40,7 +40,7 @@ const customerSchema = new mongoose.Schema(
             required: [true, 'Phone number is required'],
             trim: true,
         },
-        // ❤️ Wishlist — array of Product refs
+        // ❤️ Wishlist - array of Product refs
         wishlist: [
             {
                 type: mongoose.Schema.Types.ObjectId,
@@ -48,7 +48,7 @@ const customerSchema = new mongoose.Schema(
                 default: [],
             },
         ],
-        // 🛒 Cart — array of { product, quantity }
+        // 🛒 Cart - array of { product, quantity }
         cart: {
             type: [cartItemSchema],
             default: [],

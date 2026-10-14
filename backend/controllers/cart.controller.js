@@ -38,7 +38,7 @@ export const addToCart = async (req, res) => {
         const existing = user.cart.find((item) => item.product.toString() === productId);
 
         if (existing) {
-            // Increment by 1 — validate stock
+            // Increment by 1 - validate stock
             const nextQty = existing.quantity + 1;
             if (nextQty > product.stock) {
                 return res.status(400).json({

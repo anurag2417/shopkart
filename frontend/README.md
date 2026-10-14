@@ -1,4 +1,4 @@
-# ShopKart — Frontend
+# ShopKart - Frontend
 
 React + Vite + Tailwind + Framer Motion + GSAP + React Three Fiber.
 
@@ -95,7 +95,7 @@ src/
 
 ## 🧠 State Management
 
-We use **React Context API** — no Redux needed. Four providers wrap the app:
+We use **React Context API** - no Redux needed. Four providers wrap the app:
 
 ```
 <AuthProvider>         → user, login, register, logout
@@ -133,7 +133,7 @@ const removeProduct = async (productId) => {
 
 ### Derived state
 
-Never stored — always computed:
+Never stored - always computed:
 
 ```js
 const totalUnits = cart.reduce((s, i) => s + i.quantity, 0);
@@ -177,8 +177,8 @@ Every endpoint is a named export. Components never build URLs directly.
 
 ### React Three Fiber
 
-- `Hero3D` — floating icosahedron with two directional lights
-- `LazyHero3D` — loads only when:
+- `Hero3D` - floating icosahedron with two directional lights
+- `LazyHero3D` - loads only when:
     - `prefers-reduced-motion: no-preference`
     - Screen width ≥ 640px
     - Uses `React.lazy()` + `<Suspense>` so 3D never blocks first paint
@@ -216,10 +216,10 @@ Without this, refreshing `/products/123` would 404.
 ## 🧪 Local Verification
 
 ```bash
-# Terminal 1 — backend
+# Terminal 1 - backend
 cd backend && npm run dev
 
-# Terminal 2 — frontend
+# Terminal 2 - frontend
 cd frontend && npm run dev
 ```
 

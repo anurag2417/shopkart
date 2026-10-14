@@ -2,7 +2,7 @@ import bcrypt from 'bcryptjs';
 import Customer from '../models/customer.model.js';
 import generateToken from '../utils/generateToken.js';
 
-// Cookie options — shared
+// Cookie options - shared
 const cookieOptions = {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
@@ -94,7 +94,7 @@ export const loginCustomer = async (req, res) => {
         // 1. Find customer (include password for comparison)
         const customer = await Customer.findOne({ email: email.toLowerCase() });
 
-        // 2. Compare credentials — do NOT reveal which one failed
+        // 2. Compare credentials - do NOT reveal which one failed
         if (!customer) {
             return res.status(401).json({
                 success: false,

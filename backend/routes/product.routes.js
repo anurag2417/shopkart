@@ -8,7 +8,7 @@ import {
 
 const router = express.Router();
 
-// Order matters — "/categories" must come BEFORE "/:id"
+// Order matters - "/categories" must come BEFORE "/:id"
 router.get('/categories', getCategories);
 
 router.post('/', createProduct);

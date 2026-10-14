@@ -50,7 +50,7 @@ const Register = () => {
                 ...form,
                 phone: form.phone.replace(/\s+/g, ''),
             });
-            showToast('Account created — welcome aboard!', 'success');
+            showToast('Account created - welcome aboard!', 'success');
             navigate('/login', { state: { registered: true } });
         } catch (err) {
             const msg =
@@ -65,7 +65,7 @@ const Register = () => {
     return (
         <PageTransition>
             <div className="min-h-screen w-full flex bg-slate-50 dark:bg-ink-950 dark:bg-ink-950">
-                {/* Left — form */}
+                {/* Left - form */}
                 <div className="flex-1 flex items-center justify-center px-4 py-10 sm:px-8">
                     <div className="w-full max-w-md">
                         {/* Top bar */}
@@ -193,7 +193,7 @@ const Register = () => {
                     </div>
                 </div>
 
-                {/* Right — decorative panel (hidden on mobile) */}
+                {/* Right - decorative panel (hidden on mobile) */}
                 <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-brand-600 to-brand-800 dark:from-ink-900 dark:to-ink-800 relative overflow-hidden">
                     <div
                         className="absolute inset-0 opacity-[0.12]"

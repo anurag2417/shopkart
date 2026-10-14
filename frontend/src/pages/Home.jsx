@@ -53,7 +53,7 @@ const Home = () => {
             <Navbar />
 
             <main className="w-full px-4 sm:px-6 lg:px-10 py-6 sm:py-10">
-                {/* Welcome strip — light personalization without clutter */}
+                {/* Welcome strip - light personalization without clutter */}
                 <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
                     <div>
                         <h1 className="text-xl sm:text-2xl font-bold">
@@ -112,7 +112,7 @@ const Home = () => {
                             </h2>
 
                             <p className="hero-sub mt-4 text-brand-100 dark:text-slate-300 text-base sm:text-lg max-w-xl">
-                                Curated audio, apparel, home, and essentials — from makers we'd buy
+                                Curated audio, apparel, home, and essentials - from makers we'd buy
                                 from ourselves.
                             </p>
 

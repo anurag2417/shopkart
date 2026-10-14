@@ -37,12 +37,12 @@ export const WishlistProvider = ({ children }) => {
         refreshWishlist();
     }, [refreshWishlist]);
 
-    // Derived — Set of ids for O(1) lookup
+    // Derived - Set of ids for O(1) lookup
     const wishlistIds = new Set(wishlist.map((p) => p._id));
 
     const isWishlisted = (productId) => wishlistIds.has(productId);
 
-    // Add — optimistic with rollback
+    // Add - optimistic with rollback
     const addProduct = async (product) => {
         const previous = wishlist;
         // optimistic
@@ -56,7 +56,7 @@ export const WishlistProvider = ({ children }) => {
         }
     };
 
-    // Remove — optimistic with rollback
+    // Remove - optimistic with rollback
     const removeProduct = async (productId) => {
         const previous = wishlist;
         setWishlist((prev) => prev.filter((p) => p._id !== productId));

@@ -351,7 +351,7 @@ Base URL (prod): `https://shopkart-api-g41f.onrender.com`
 
 All protected routes require the `token` cookie (set automatically after login).
 
-### 🔐 Auth — `/customers`
+### 🔐 Auth - `/customers`
 
 | Method  | Endpoint                     | Auth | Purpose                      |
 | ------- | ---------------------------- | :--: | ---------------------------- |
@@ -399,12 +399,12 @@ Content-Type: application/json
 
 </details>
 
-### 🛍️ Products — `/products`
+### 🛍️ Products - `/products`
 
 | Method | Endpoint               | Auth | Purpose                                    |
 | ------ | ---------------------- | :--: | ------------------------------------------ |
 | `POST` | `/products`            |  –   | Create product                             |
-| `GET`  | `/products`            |  –   | List — supports `?search=&category=&sort=` |
+| `GET`  | `/products`            |  –   | List - supports `?search=&category=&sort=` |
 | `GET`  | `/products/:id`        |  –   | Single product                             |
 | `GET`  | `/products/categories` |  –   | Distinct categories                        |
 
@@ -417,7 +417,7 @@ GET /products?search=mouse&category=Electronics
 GET /products?sort=price_asc|price_desc|name_asc|name_desc
 ```
 
-### ❤️ Wishlist — `/wishlist` (all protected)
+### ❤️ Wishlist - `/wishlist` (all protected)
 
 | Method   | Endpoint                      | Purpose                               |
 | -------- | ----------------------------- | ------------------------------------- |
@@ -427,7 +427,7 @@ GET /products?sort=price_asc|price_desc|name_asc|name_desc
 | `PATCH`  | `/wishlist/:productId/toggle` | Toggle (returns `{ saved: boolean }`) |
 | `GET`    | `/wishlist/count`             | Count for navbar badge                |
 
-### 🛒 Cart — `/cart` (all protected)
+### 🛒 Cart - `/cart` (all protected)
 
 | Method   | Endpoint           | Purpose                            |
 | -------- | ------------------ | ---------------------------------- |
@@ -437,7 +437,7 @@ GET /products?sort=price_asc|price_desc|name_asc|name_desc
 | `DELETE` | `/cart/:productId` | Remove                             |
 | `GET`    | `/cart/count`      | Total units                        |
 
-### 💳 Orders — `/orders` (all protected)
+### 💳 Orders - `/orders` (all protected)
 
 | Method  | Endpoint                       | Purpose                                         |
 | ------- | ------------------------------ | ----------------------------------------------- |
@@ -596,7 +596,7 @@ Manual smoke test: register → login → browse → wishlist → cart → check
 
 ### Automated (optional CI)
 
-See `.github/workflows/ci.yml` — lints backend and builds frontend on every push.
+See `.github/workflows/ci.yml` - lints backend and builds frontend on every push.
 
 ---
 
@@ -623,16 +623,16 @@ This project demonstrates production-grade MERN skills:
 - **JWT auth** across sites with HttpOnly cookies
 - **Payment integration** with server-side HMAC verification
 - **Global state** in React via Context API (with optimistic updates)
-- **Derived state** — subtotal, count never stored, always computed
+- **Derived state** - subtotal, count never stored, always computed
 - **Animation** with Framer Motion + GSAP + React Three Fiber
 - **Deployment** on Render + Vercel + MongoDB Atlas
-- **Security best practices** — env handling, secret isolation, ownership checks
+- **Security best practices** - env handling, secret isolation, ownership checks
 
 ---
 
 ## 📄 License
 
-MIT — free for learning and portfolio use. See [LICENSE](./LICENSE).
+MIT - free for learning and portfolio use. See [LICENSE](./LICENSE).
 
 ---
 
