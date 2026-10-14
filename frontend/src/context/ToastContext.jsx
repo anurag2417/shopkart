@@ -1,8 +1,15 @@
 import { createContext, useCallback, useContext, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const ToastContext = createContext(null);
 
 let idCounter = 0;
+
+const toastVariants = {
+    initial: { opacity: 0, y: -16, scale: 0.96 },
+    animate: { opacity: 1, y: 0, scale: 1 },
+    exit: { opacity: 0, y: -12, scale: 0.96 },
+};
 
 export const ToastProvider = ({ children }) => {
     const [toasts, setToasts] = useState([]);
@@ -22,28 +29,35 @@ export const ToastProvider = ({ children }) => {
     return (
         <ToastContext.Provider value={{ showToast }}>
             {children}
-            {/* Toast viewport */}
+
             <div className="fixed top-4 right-4 z-[100] flex flex-col gap-2 pointer-events-none">
-                {toasts.map((t) => (
-                    <div
-                        key={t.id}
-                        onClick={() => removeToast(t.id)}
-                        className={`pointer-events-auto min-w-[240px] max-w-sm px-4 py-3 rounded-xl shadow-lg border text-sm font-medium animate-slide-up cursor-pointer ${
-                            t.type === 'success'
-                                ? 'bg-green-50 border-green-200 text-green-800'
-                                : t.type === 'error'
-                                  ? 'bg-red-50 border-red-200 text-red-800'
-                                  : 'bg-white border-slate-200 text-slate-800'
-                        }`}
-                    >
-                        <div className="flex items-center gap-2">
-                            <span className="text-lg">
-                                {t.type === 'success' ? '✓' : t.type === 'error' ? '✕' : 'ℹ'}
-                            </span>
-                            <span>{t.message}</span>
-                        </div>
-                    </div>
-                ))}
+                <AnimatePresence initial={false}>
+                    {toasts.map((t) => (
+                        <motion.div
+                            key={t.id}
+                            variants={toastVariants}
+                            initial="initial"
+                            animate="animate"
+                            exit="exit"
+                            transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                            onClick={() => removeToast(t.id)}
+                            className={`pointer-events-auto min-w-[240px] max-w-sm px-4 py-3 rounded-xl shadow-lg border text-sm font-medium cursor-pointer ${
+                                t.type === 'success'
+                                    ? 'bg-green-50 border-green-200 text-green-800'
+                                    : t.type === 'error'
+                                      ? 'bg-red-50 border-red-200 text-red-800'
+                                      : 'bg-white border-slate-200 text-slate-800'
+                            }`}
+                        >
+                            <div className="flex items-center gap-2">
+                                <span className="text-lg">
+                                    {t.type === 'success' ? '✓' : t.type === 'error' ? '✕' : 'ℹ'}
+                                </span>
+                                <span>{t.message}</span>
+                            </div>
+                        </motion.div>
+                    ))}
+                </AnimatePresence>
             </div>
         </ToastContext.Provider>
     );

@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import Navbar from '../components/Navbar';
+import PageTransition from '../components/motion/PageTransition';
+import PressButton from '../components/motion/PressButton';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
@@ -123,6 +126,8 @@ const Checkout = () => {
                                 'Payment verification failed. Please contact support.',
                             'error',
                         );
+                    } finally {
+                        setPlacing(false);
                     }
                 },
                 modal: {
@@ -148,7 +153,6 @@ const Checkout = () => {
             });
 
             rzp.open();
-            // Note: setPlacing(false) happens in handler/ondismiss paths
         } catch (err) {
             setPlacing(false);
             const msg =
@@ -163,181 +167,205 @@ const Checkout = () => {
     // ---- Empty cart guard ----
     if (cart.length === 0) {
         return (
-            <div className="min-h-screen w-full bg-slate-50">
-                <Navbar />
-                <main className="w-full px-4 sm:px-6 lg:px-10 py-12">
-                    <div className="card p-10 sm:p-16 text-center max-w-lg mx-auto">
-                        <div className="text-5xl mb-4">🛒</div>
-                        <h3 className="text-xl font-semibold text-slate-900 mb-2">
-                            Your cart is empty
-                        </h3>
-                        <p className="text-slate-500 text-sm mb-6">
-                            Add some products before checking out.
-                        </p>
-                        <Link to="/products" className="btn-primary inline-flex">
-                            Browse Products
-                        </Link>
-                    </div>
-                </main>
-            </div>
+            <PageTransition>
+                <div className="min-h-screen w-full bg-slate-50">
+                    <Navbar />
+                    <main className="w-full px-4 sm:px-6 lg:px-10 py-12">
+                        <motion.div
+                            initial={{ opacity: 0, y: 16 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.4, ease: 'easeOut' }}
+                            className="card p-10 sm:p-16 text-center max-w-lg mx-auto"
+                        >
+                            <div className="text-5xl mb-4">🛒</div>
+                            <h3 className="text-xl font-semibold text-slate-900 mb-2">
+                                Your cart is empty
+                            </h3>
+                            <p className="text-slate-500 text-sm mb-6">
+                                Add some products before checking out.
+                            </p>
+                            <Link to="/products" className="btn-primary inline-flex">
+                                Browse Products
+                            </Link>
+                        </motion.div>
+                    </main>
+                </div>
+            </PageTransition>
         );
     }
 
     return (
-        <div className="min-h-screen w-full bg-slate-50">
-            <Navbar />
+        <PageTransition>
+            <div className="min-h-screen w-full bg-slate-50">
+                <Navbar />
 
-            <main className="w-full px-4 sm:px-6 lg:px-10 py-8">
-                <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-6">Checkout</h1>
+                <main className="w-full px-4 sm:px-6 lg:px-10 py-8">
+                    <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-6">Checkout</h1>
 
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    {/* Shipping Form */}
-                    <div className="lg:col-span-2 bg-white rounded-2xl border border-slate-100 shadow-sm p-5 sm:p-6">
-                        <h2 className="text-lg font-semibold text-slate-900 mb-4">
-                            Shipping Details
-                        </h2>
-
-                        {serverError && (
-                            <div className="mb-4 px-4 py-3 rounded-lg bg-red-50 border border-red-100 text-red-700 text-sm">
-                                {serverError}
-                            </div>
-                        )}
-
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <Field
-                                label="Full Name"
-                                name="fullName"
-                                value={form.fullName}
-                                error={errors.fullName}
-                                onChange={handleChange}
-                                placeholder="John Doe"
-                                className="sm:col-span-2"
-                            />
-                            <Field
-                                label="Phone"
-                                name="phone"
-                                value={form.phone}
-                                error={errors.phone}
-                                onChange={handleChange}
-                                placeholder="9876543210"
-                                inputMode="numeric"
-                                maxLength={10}
-                            />
-                            <Field
-                                label="Pincode"
-                                name="pincode"
-                                value={form.pincode}
-                                error={errors.pincode}
-                                onChange={handleChange}
-                                placeholder="560001"
-                                inputMode="numeric"
-                                maxLength={6}
-                            />
-                            <Field
-                                label="Address"
-                                name="addressLine1"
-                                value={form.addressLine1}
-                                error={errors.addressLine1}
-                                onChange={handleChange}
-                                placeholder="Flat / House no., Street"
-                                className="sm:col-span-2"
-                            />
-                            <Field
-                                label="City"
-                                name="city"
-                                value={form.city}
-                                error={errors.city}
-                                onChange={handleChange}
-                                placeholder="Bengaluru"
-                            />
-                            <Field
-                                label="State"
-                                name="state"
-                                value={form.state}
-                                error={errors.state}
-                                onChange={handleChange}
-                                placeholder="Karnataka"
-                            />
-                        </div>
-                    </div>
-
-                    {/* Order Summary */}
-                    <aside className="lg:col-span-1">
-                        <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-5 sm:p-6 sticky top-24">
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        {/* Shipping Form */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 16 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.4, ease: 'easeOut' }}
+                            className="lg:col-span-2 bg-white rounded-2xl border border-slate-100 shadow-sm p-5 sm:p-6"
+                        >
                             <h2 className="text-lg font-semibold text-slate-900 mb-4">
-                                Order Summary
+                                Shipping Details
                             </h2>
 
-                            <div className="max-h-64 overflow-y-auto pr-1 space-y-3 mb-4">
-                                {cart.map((item) => (
-                                    <div key={item.product._id} className="flex gap-3 items-center">
-                                        <img
-                                            src={item.product.image}
-                                            alt={item.product.name}
-                                            className="w-12 h-12 rounded-lg object-cover bg-slate-100 flex-shrink-0"
-                                            onError={(e) => {
-                                                e.target.src =
-                                                    'https://via.placeholder.com/80?text=No';
-                                            }}
-                                        />
-                                        <div className="flex-1 min-w-0">
-                                            <p className="text-sm font-medium text-slate-800 truncate">
-                                                {item.product.name}
-                                            </p>
-                                            <p className="text-xs text-slate-500">
-                                                {item.quantity} × ₹
-                                                {item.product.price.toLocaleString('en-IN')}
+                            {serverError && (
+                                <div className="mb-4 px-4 py-3 rounded-lg bg-red-50 border border-red-100 text-red-700 text-sm">
+                                    {serverError}
+                                </div>
+                            )}
+
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <Field
+                                    label="Full Name"
+                                    name="fullName"
+                                    value={form.fullName}
+                                    error={errors.fullName}
+                                    onChange={handleChange}
+                                    placeholder="John Doe"
+                                    className="sm:col-span-2"
+                                />
+                                <Field
+                                    label="Phone"
+                                    name="phone"
+                                    value={form.phone}
+                                    error={errors.phone}
+                                    onChange={handleChange}
+                                    placeholder="9876543210"
+                                    inputMode="numeric"
+                                    maxLength={10}
+                                />
+                                <Field
+                                    label="Pincode"
+                                    name="pincode"
+                                    value={form.pincode}
+                                    error={errors.pincode}
+                                    onChange={handleChange}
+                                    placeholder="560001"
+                                    inputMode="numeric"
+                                    maxLength={6}
+                                />
+                                <Field
+                                    label="Address"
+                                    name="addressLine1"
+                                    value={form.addressLine1}
+                                    error={errors.addressLine1}
+                                    onChange={handleChange}
+                                    placeholder="Flat / House no., Street"
+                                    className="sm:col-span-2"
+                                />
+                                <Field
+                                    label="City"
+                                    name="city"
+                                    value={form.city}
+                                    error={errors.city}
+                                    onChange={handleChange}
+                                    placeholder="Bengaluru"
+                                />
+                                <Field
+                                    label="State"
+                                    name="state"
+                                    value={form.state}
+                                    error={errors.state}
+                                    onChange={handleChange}
+                                    placeholder="Karnataka"
+                                />
+                            </div>
+                        </motion.div>
+
+                        {/* Order Summary */}
+                        <motion.aside
+                            initial={{ opacity: 0, y: 16 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.4, delay: 0.1, ease: 'easeOut' }}
+                            className="lg:col-span-1"
+                        >
+                            <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-5 sm:p-6 sticky top-24">
+                                <h2 className="text-lg font-semibold text-slate-900 mb-4">
+                                    Order Summary
+                                </h2>
+
+                                <div className="max-h-64 overflow-y-auto pr-1 space-y-3 mb-4">
+                                    {cart.map((item) => (
+                                        <div
+                                            key={item.product._id}
+                                            className="flex gap-3 items-center"
+                                        >
+                                            <img
+                                                src={item.product.image}
+                                                alt={item.product.name}
+                                                className="w-12 h-12 rounded-lg object-cover bg-slate-100 flex-shrink-0"
+                                                onError={(e) => {
+                                                    e.target.src =
+                                                        'https://via.placeholder.com/80?text=No';
+                                                }}
+                                            />
+                                            <div className="flex-1 min-w-0">
+                                                <p className="text-sm font-medium text-slate-800 truncate">
+                                                    {item.product.name}
+                                                </p>
+                                                <p className="text-xs text-slate-500">
+                                                    {item.quantity} × ₹
+                                                    {item.product.price.toLocaleString('en-IN')}
+                                                </p>
+                                            </div>
+                                            <p className="text-sm font-semibold text-slate-900">
+                                                ₹
+                                                {(
+                                                    item.product.price * item.quantity
+                                                ).toLocaleString('en-IN')}
                                             </p>
                                         </div>
-                                        <p className="text-sm font-semibold text-slate-900">
-                                            ₹
-                                            {(item.product.price * item.quantity).toLocaleString(
-                                                'en-IN',
-                                            )}
-                                        </p>
+                                    ))}
+                                </div>
+
+                                <div className="space-y-3 text-sm border-t border-slate-100 pt-4">
+                                    <div className="flex justify-between text-slate-600">
+                                        <span>Items ({totalUnits})</span>
+                                        <span>₹{subtotal.toLocaleString('en-IN')}</span>
                                     </div>
-                                ))}
+                                    <div className="flex justify-between text-slate-600">
+                                        <span>Delivery</span>
+                                        <span
+                                            className={
+                                                deliveryFee === 0
+                                                    ? 'text-green-600 font-medium'
+                                                    : ''
+                                            }
+                                        >
+                                            {deliveryFee === 0 ? 'FREE' : `₹${deliveryFee}`}
+                                        </span>
+                                    </div>
+                                    <div className="border-t border-slate-100 pt-3 flex justify-between text-base font-semibold text-slate-900">
+                                        <span>Total</span>
+                                        <span>₹{total.toLocaleString('en-IN')}</span>
+                                    </div>
+                                </div>
+
+                                <PressButton
+                                    onClick={handlePlaceOrder}
+                                    disabled={placing}
+                                    className="btn-primary w-full mt-6"
+                                >
+                                    {placing
+                                        ? 'Processing...'
+                                        : `Pay ₹${total.toLocaleString('en-IN')}`}
+                                </PressButton>
+
+                                <p className="text-xs text-slate-400 text-center mt-3">
+                                    🔒 Secured by Razorpay · Test Mode
+                                </p>
                             </div>
-
-                            <div className="space-y-3 text-sm border-t border-slate-100 pt-4">
-                                <div className="flex justify-between text-slate-600">
-                                    <span>Items ({totalUnits})</span>
-                                    <span>₹{subtotal.toLocaleString('en-IN')}</span>
-                                </div>
-                                <div className="flex justify-between text-slate-600">
-                                    <span>Delivery</span>
-                                    <span
-                                        className={
-                                            deliveryFee === 0 ? 'text-green-600 font-medium' : ''
-                                        }
-                                    >
-                                        {deliveryFee === 0 ? 'FREE' : `₹${deliveryFee}`}
-                                    </span>
-                                </div>
-                                <div className="border-t border-slate-100 pt-3 flex justify-between text-base font-semibold text-slate-900">
-                                    <span>Total</span>
-                                    <span>₹{total.toLocaleString('en-IN')}</span>
-                                </div>
-                            </div>
-
-                            <button
-                                onClick={handlePlaceOrder}
-                                disabled={placing}
-                                className="btn-primary w-full mt-6"
-                            >
-                                {placing
-                                    ? 'Processing...'
-                                    : `Pay ₹${total.toLocaleString('en-IN')}`}
-                            </button>
-
-                            <p className="text-xs text-slate-400 text-center mt-3">
-                                🔒 Secured by Razorpay · Test Mode
-                            </p>
-                        </div>
-                    </aside>
-                </div>
-            </main>
-        </div>
+                        </motion.aside>
+                    </div>
+                </main>
+            </div>
+        </PageTransition>
     );
 };
 

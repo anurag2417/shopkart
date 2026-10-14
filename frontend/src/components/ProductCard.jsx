@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import WishlistButton from './WishlistButton';
 import AddToCartButton from './AddToCartButton';
 
@@ -7,8 +8,11 @@ const ProductCard = ({ product }) => {
     const lowStock = product.stock > 0 && product.stock <= 5;
 
     return (
-        <div className="card overflow-hidden group flex flex-col">
-            {/* Image */}
+        <motion.div
+            whileHover={{ y: -6 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 22 }}
+            className="card overflow-hidden group flex flex-col h-full"
+        >
             <div className="relative">
                 <Link to={`/products/${product._id}`} className="block">
                     <div className="relative aspect-[4/3] bg-slate-100 overflow-hidden">
@@ -42,7 +46,6 @@ const ProductCard = ({ product }) => {
                 </div>
             </div>
 
-            {/* Content */}
             <div className="p-4 flex flex-col flex-1">
                 <Link to={`/products/${product._id}`}>
                     <h3 className="font-semibold text-slate-900 text-sm sm:text-base line-clamp-2 hover:text-brand-600 transition-colors">
@@ -77,7 +80,7 @@ const ProductCard = ({ product }) => {
                     <AddToCartButton product={product} variant="card" />
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 };
 

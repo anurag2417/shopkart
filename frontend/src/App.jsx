@@ -1,4 +1,5 @@
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes, useLocation } from 'react-router-dom';
+import { AnimatePresence, MotionConfig } from 'framer-motion';
 import { AuthProvider } from './context/AuthContext';
 import { ToastProvider } from './context/ToastContext';
 import { WishlistProvider } from './context/WishlistContext';
@@ -17,101 +18,117 @@ import OrderSuccess from './pages/OrderSuccess';
 import Orders from './pages/Orders';
 import OrderDetails from './pages/OrderDetails';
 
+/**
+ * AnimatedRoutes — needed inside Router so we can read location
+ * and drive AnimatePresence exit animations.
+ */
+const AnimatedRoutes = () => {
+    const location = useLocation();
+
+    return (
+        <AnimatePresence mode="wait" initial={false}>
+            <Routes location={location} key={location.pathname}>
+                {/* Public */}
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+
+                {/* Protected */}
+                <Route
+                    path="/home"
+                    element={
+                        <ProtectedRoute>
+                            <Home />
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="/products"
+                    element={
+                        <ProtectedRoute>
+                            <Products />
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="/products/:id"
+                    element={
+                        <ProtectedRoute>
+                            <ProductDetails />
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="/wishlist"
+                    element={
+                        <ProtectedRoute>
+                            <Wishlist />
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="/cart"
+                    element={
+                        <ProtectedRoute>
+                            <Cart />
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="/checkout"
+                    element={
+                        <ProtectedRoute>
+                            <Checkout />
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="/order-success/:id"
+                    element={
+                        <ProtectedRoute>
+                            <OrderSuccess />
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="/orders"
+                    element={
+                        <ProtectedRoute>
+                            <Orders />
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="/orders/:id"
+                    element={
+                        <ProtectedRoute>
+                            <OrderDetails />
+                        </ProtectedRoute>
+                    }
+                />
+
+                {/* Redirects */}
+                <Route path="/" element={<Navigate to="/home" replace />} />
+                <Route path="*" element={<Navigate to="/home" replace />} />
+            </Routes>
+        </AnimatePresence>
+    );
+};
+
 function App() {
     return (
-        <BrowserRouter>
-            <AuthProvider>
-                <ToastProvider>
-                    <WishlistProvider>
-                        <CartProvider>
-                            <Routes>
-                                {/* Public */}
-                                <Route path="/login" element={<Login />} />
-                                <Route path="/register" element={<Register />} />
-
-                                {/* Protected */}
-                                <Route
-                                    path="/home"
-                                    element={
-                                        <ProtectedRoute>
-                                            <Home />
-                                        </ProtectedRoute>
-                                    }
-                                />
-                                <Route
-                                    path="/products"
-                                    element={
-                                        <ProtectedRoute>
-                                            <Products />
-                                        </ProtectedRoute>
-                                    }
-                                />
-                                <Route
-                                    path="/products/:id"
-                                    element={
-                                        <ProtectedRoute>
-                                            <ProductDetails />
-                                        </ProtectedRoute>
-                                    }
-                                />
-                                <Route
-                                    path="/wishlist"
-                                    element={
-                                        <ProtectedRoute>
-                                            <Wishlist />
-                                        </ProtectedRoute>
-                                    }
-                                />
-                                <Route
-                                    path="/cart"
-                                    element={
-                                        <ProtectedRoute>
-                                            <Cart />
-                                        </ProtectedRoute>
-                                    }
-                                />
-                                <Route
-                                    path="/checkout"
-                                    element={
-                                        <ProtectedRoute>
-                                            <Checkout />
-                                        </ProtectedRoute>
-                                    }
-                                />
-                                <Route
-                                    path="/order-success/:id"
-                                    element={
-                                        <ProtectedRoute>
-                                            <OrderSuccess />
-                                        </ProtectedRoute>
-                                    }
-                                />
-                                <Route
-                                    path="/orders"
-                                    element={
-                                        <ProtectedRoute>
-                                            <Orders />
-                                        </ProtectedRoute>
-                                    }
-                                />
-                                <Route
-                                    path="/orders/:id"
-                                    element={
-                                        <ProtectedRoute>
-                                            <OrderDetails />
-                                        </ProtectedRoute>
-                                    }
-                                />
-
-                                {/* Redirects */}
-                                <Route path="/" element={<Navigate to="/home" replace />} />
-                                <Route path="*" element={<Navigate to="/home" replace />} />
-                            </Routes>
-                        </CartProvider>
-                    </WishlistProvider>
-                </ToastProvider>
-            </AuthProvider>
-        </BrowserRouter>
+        <MotionConfig reducedMotion="user">
+            <BrowserRouter>
+                <AuthProvider>
+                    <ToastProvider>
+                        <WishlistProvider>
+                            <CartProvider>
+                                <AnimatedRoutes />
+                            </CartProvider>
+                        </WishlistProvider>
+                    </ToastProvider>
+                </AuthProvider>
+            </BrowserRouter>
+        </MotionConfig>
     );
 }
 
