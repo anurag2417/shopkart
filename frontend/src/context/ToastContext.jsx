@@ -43,10 +43,10 @@ export const ToastProvider = ({ children }) => {
                             onClick={() => removeToast(t.id)}
                             className={`pointer-events-auto min-w-[240px] max-w-sm px-4 py-3 rounded-xl shadow-lg border text-sm font-medium cursor-pointer ${
                                 t.type === 'success'
-                                    ? 'bg-green-50 border-green-200 text-green-800'
+                                    ? 'bg-green-50 border-green-200 text-green-800 dark:bg-green-950/40 dark:border-green-900/60 dark:text-green-300'
                                     : t.type === 'error'
-                                      ? 'bg-red-50 border-red-200 text-red-800'
-                                      : 'bg-white border-slate-200 text-slate-800'
+                                      ? 'bg-red-50 border-red-200 text-red-800 dark:bg-red-950/40 dark:border-red-900/60 dark:text-red-300'
+                                      : 'bg-white border-slate-200 text-slate-800 dark:bg-ink-900 dark:border-ink-800 dark:text-slate-100'
                             }`}
                         >
                             <div className="flex items-center gap-2">

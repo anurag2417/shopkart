@@ -26,7 +26,7 @@ const WishlistCard = ({ product }) => {
     return (
         <div className="card overflow-hidden flex flex-col">
             <Link to={`/products/${product._id}`}>
-                <div className="relative aspect-[4/3] bg-slate-100 overflow-hidden">
+                <div className="relative aspect-[4/3] bg-slate-100 dark:bg-ink-800 overflow-hidden">
                     <img
                         src={product.image}
                         alt={product.name}
@@ -36,7 +36,7 @@ const WishlistCard = ({ product }) => {
                             e.target.src = 'https://via.placeholder.com/400x300?text=No+Image';
                         }}
                     />
-                    <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-white/90 backdrop-blur text-xs font-medium text-slate-700 shadow-sm">
+                    <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-white/90 dark:bg-ink-950/90 backdrop-blur text-xs font-medium text-slate-700 dark:text-slate-200 shadow-sm">
                         {product.category}
                     </span>
                 </div>
@@ -67,7 +67,7 @@ const WishlistCard = ({ product }) => {
                     <button
                         onClick={handleRemove}
                         disabled={removing}
-                        className="btn-secondary text-sm py-2 text-red-600 border-red-200 hover:bg-red-50"
+                        className="btn-secondary text-sm py-2 text-red-600 border-red-200 hover:bg-red-50 dark:border-red-900/60 dark:hover:bg-red-950/40"
                     >
                         {removing ? 'Removing...' : 'Remove'}
                     </button>

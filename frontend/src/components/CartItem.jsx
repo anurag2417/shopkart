@@ -46,7 +46,7 @@ const CartItem = ({ item }) => {
             {/* Image */}
             <Link
                 to={`/products/${product._id}`}
-                className="w-full sm:w-28 h-40 sm:h-28 flex-shrink-0 rounded-xl overflow-hidden bg-slate-100"
+                className="w-full sm:w-28 h-40 sm:h-28 flex-shrink-0 rounded-xl overflow-hidden bg-slate-100 dark:bg-ink-800"
             >
                 <img
                     src={product.image}
@@ -96,22 +96,22 @@ const CartItem = ({ item }) => {
 
                 <div className="mt-auto pt-3 flex flex-wrap items-center justify-between gap-3">
                     {/* Quantity controls */}
-                    <div className="inline-flex items-center border border-slate-200 rounded-lg overflow-hidden">
+                    <div className="inline-flex items-center border border-slate-200 dark:border-ink-800 rounded-lg overflow-hidden">
                         <button
                             onClick={handleDec}
                             disabled={busy || quantity <= 1}
-                            className="w-9 h-9 flex items-center justify-center text-slate-700 hover:bg-slate-100 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                            className="w-9 h-9 flex items-center justify-center text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-ink-800 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
                             aria-label="Decrease quantity"
                         >
                             −
                         </button>
-                        <span className="w-10 h-9 flex items-center justify-center text-sm font-semibold text-slate-900 dark:text-white border-x border-slate-200">
+                        <span className="w-10 h-9 flex items-center justify-center text-sm font-semibold text-slate-900 dark:text-white border-x border-slate-200 dark:border-ink-800">
                             {quantity}
                         </span>
                         <button
                             onClick={handleInc}
                             disabled={busy || atMaxStock}
-                            className="w-9 h-9 flex items-center justify-center text-slate-700 hover:bg-slate-100 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                            className="w-9 h-9 flex items-center justify-center text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-ink-800 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
                             aria-label="Increase quantity"
                         >
                             +

@@ -74,7 +74,7 @@ const OrderDetails = () => {
                                     <p className="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wide">
                                         Order ID
                                     </p>
-                                    <p className="text-sm font-mono text-slate-800 mt-0.5">
+                                    <p className="text-sm font-mono text-slate-800 dark:text-slate-100 mt-0.5">
                                         {order._id}
                                     </p>
                                     <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
@@ -124,14 +124,14 @@ const OrderDetails = () => {
                                         <img
                                             src={item.image}
                                             alt={item.name}
-                                            className="w-14 h-14 rounded-lg object-cover bg-slate-100"
+                                            className="w-14 h-14 rounded-lg object-cover bg-slate-100 dark:bg-ink-800"
                                             onError={(e) => {
                                                 e.target.src =
                                                     'https://via.placeholder.com/80?text=No';
                                             }}
                                         />
                                         <div className="flex-1 min-w-0">
-                                            <p className="text-sm font-medium text-slate-800 truncate">
+                                            <p className="text-sm font-medium text-slate-800 dark:text-slate-100 truncate">
                                                 {item.name}
                                             </p>
                                             <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
@@ -145,7 +145,7 @@ const OrderDetails = () => {
                                     </div>
                                 ))}
                             </div>
-                            <div className="border-t border-slate-100 mt-4 pt-4 flex justify-between text-base font-bold text-slate-900 dark:text-white">
+                            <div className="border-t border-slate-100 dark:border-ink-800 mt-4 pt-4 flex justify-between text-base font-bold text-slate-900 dark:text-white">
                                 <span>Total</span>
                                 <span>₹{order.totalAmount.toLocaleString('en-IN')}</span>
                             </div>
@@ -156,7 +156,7 @@ const OrderDetails = () => {
                             <h2 className="text-sm font-semibold text-slate-900 dark:text-white mb-3">
                                 Shipping Address
                             </h2>
-                            <div className="text-sm text-slate-700 space-y-0.5">
+                            <div className="text-sm text-slate-700 dark:text-slate-200 space-y-0.5">
                                 <p className="font-medium">{order.shippingAddress.fullName}</p>
                                 <p>{order.shippingAddress.phone}</p>
                                 <p>{order.shippingAddress.addressLine1}</p>
@@ -172,7 +172,7 @@ const OrderDetails = () => {
                             <h2 className="text-sm font-semibold text-slate-900 dark:text-white mb-3">
                                 Payment Details
                             </h2>
-                            <div className="text-xs text-slate-600 space-y-1.5 font-mono">
+                            <div className="text-xs text-slate-600 dark:text-slate-300 space-y-1.5 font-mono">
                                 {order.razorpayOrderId && (
                                     <p>
                                         <span className="text-slate-500 dark:text-slate-400 font-sans">

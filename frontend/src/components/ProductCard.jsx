@@ -15,7 +15,7 @@ const ProductCard = ({ product }) => {
         >
             <div className="relative">
                 <Link to={`/products/${product._id}`} className="block">
-                    <div className="relative aspect-[4/3] bg-slate-100 overflow-hidden">
+                    <div className="relative aspect-[4/3] bg-slate-100 dark:bg-ink-800 overflow-hidden">
                         <img
                             src={product.image}
                             alt={product.name}
@@ -25,7 +25,7 @@ const ProductCard = ({ product }) => {
                                 e.target.src = 'https://via.placeholder.com/400x300?text=No+Image';
                             }}
                         />
-                        <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-white/90 backdrop-blur text-xs font-medium text-slate-700 shadow-sm">
+                        <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-white/90 dark:bg-ink-950/90 backdrop-blur text-xs font-medium text-slate-700 dark:text-slate-200 shadow-sm">
                             {product.category}
                         </span>
                         {!inStock && (
@@ -73,7 +73,7 @@ const ProductCard = ({ product }) => {
                 <div className="mt-4 grid grid-cols-2 gap-2">
                     <Link
                         to={`/products/${product._id}`}
-                        className="inline-flex items-center justify-center px-4 py-2.5 rounded-lg border border-slate-200 text-slate-700 text-sm font-medium hover:bg-slate-900 hover:text-white hover:border-slate-900 transition-all duration-200"
+                        className="inline-flex items-center justify-center px-4 py-2.5 rounded-lg border border-slate-200 dark:border-ink-800 text-slate-700 dark:text-slate-200 text-sm font-medium hover:bg-slate-900 dark:hover:bg-ink-800 hover:text-white hover:border-slate-900 dark:hover:border-ink-800 transition-all duration-200"
                     >
                         View
                     </Link>

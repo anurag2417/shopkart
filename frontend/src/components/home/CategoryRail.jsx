@@ -10,6 +10,8 @@ const categories = [
     { name: 'Wearables', emoji: '⌚' },
     { name: 'Apparel', emoji: '👕' },
     { name: 'Bags', emoji: '🎒' },
+    { name: 'Fitness', emoji: '🏋️' },
+    { name: 'Kitchen', emoji: '🍳' },
 ];
 
 const CategoryRail = () => (

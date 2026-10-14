@@ -33,18 +33,18 @@ const Cart = () => {
                             {Array.from({ length: 3 }).map((_, i) => (
                                 <div
                                     key={i}
-                                    className="flex gap-4 p-5 bg-white rounded-2xl animate-pulse"
+                                    className="flex gap-4 p-5 bg-white dark:bg-ink-900 border border-slate-100 dark:border-ink-800 rounded-2xl animate-pulse"
                                 >
-                                    <div className="w-28 h-28 rounded-xl bg-slate-200" />
+                                    <div className="w-28 h-28 rounded-xl bg-slate-200 dark:bg-ink-800" />
                                     <div className="flex-1 space-y-3">
-                                        <div className="h-4 bg-slate-200 rounded w-2/3" />
-                                        <div className="h-4 bg-slate-200 rounded w-1/3" />
-                                        <div className="h-9 bg-slate-200 rounded w-32 mt-4" />
+                                        <div className="h-4 bg-slate-200 dark:bg-ink-800 rounded w-2/3" />
+                                        <div className="h-4 bg-slate-200 dark:bg-ink-800 rounded w-1/3" />
+                                        <div className="h-9 bg-slate-200 dark:bg-ink-800 rounded w-32 mt-4" />
                                     </div>
                                 </div>
                             ))}
                         </div>
-                        <div className="bg-white rounded-2xl p-5 h-64 animate-pulse" />
+                        <div className="bg-white dark:bg-ink-900 border border-slate-100 dark:border-ink-800 rounded-2xl p-5 h-64 animate-pulse" />
                     </div>
                 )}
 
@@ -116,11 +116,11 @@ const Cart = () => {
                                 </h2>
 
                                 <div className="space-y-3 text-sm">
-                                    <div className="flex justify-between text-slate-600">
+                                    <div className="flex justify-between text-slate-600 dark:text-slate-300">
                                         <span>Items ({totalUnits})</span>
                                         <span>₹{subtotal.toLocaleString('en-IN')}</span>
                                     </div>
-                                    <div className="flex justify-between text-slate-600">
+                                    <div className="flex justify-between text-slate-600 dark:text-slate-300">
                                         <span>Delivery</span>
                                         <span
                                             className={
@@ -132,7 +132,7 @@ const Cart = () => {
                                             {deliveryFee === 0 ? 'FREE' : `₹${deliveryFee}`}
                                         </span>
                                     </div>
-                                    <div className="border-t border-slate-100 pt-3 flex justify-between text-base font-semibold text-slate-900 dark:text-white">
+                                    <div className="border-t border-slate-100 dark:border-ink-800 pt-3 flex justify-between text-base font-semibold text-slate-900 dark:text-white">
                                         <span>Total</span>
                                         <span>₹{total.toLocaleString('en-IN')}</span>
                                     </div>
@@ -152,7 +152,7 @@ const Cart = () => {
                                     Proceed to Checkout
                                 </button>
 
-                                <p className="text-xs text-slate-400 text-center mt-3">
+                                <p className="text-xs text-slate-400 dark:text-slate-500 text-center mt-3">
                                     Secure checkout · 🔒 SSL encrypted
                                 </p>
                             </div>

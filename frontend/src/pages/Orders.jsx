@@ -94,7 +94,7 @@ const Orders = () => {
                                         <p className="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wide">
                                             Order
                                         </p>
-                                        <p className="text-sm font-mono text-slate-800 mt-0.5">
+                                        <p className="text-sm font-mono text-slate-800 dark:text-slate-100 mt-0.5">
                                             #{order._id.slice(-8)}
                                         </p>
                                         <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
@@ -111,7 +111,7 @@ const Orders = () => {
                                     <span
                                         className={`px-3 py-1 rounded-full text-xs font-semibold ${
                                             statusColors[order.status] ||
-                                            'bg-slate-100 text-slate-700'
+                                            'bg-slate-100 text-slate-700 dark:bg-ink-800 dark:text-slate-200'
                                         }`}
                                     >
                                         {order.status.replace('_', ' ')}
@@ -125,7 +125,7 @@ const Orders = () => {
                                                 key={item.product}
                                                 src={item.image}
                                                 alt={item.name}
-                                                className="w-10 h-10 rounded-lg object-cover bg-slate-200 border-2 border-white"
+                                                className="w-10 h-10 rounded-lg object-cover bg-slate-200 dark:bg-ink-800 border-2 border-white dark:border-ink-900"
                                                 onError={(e) => {
                                                     e.target.src =
                                                         'https://via.placeholder.com/80?text=No';
@@ -133,18 +133,18 @@ const Orders = () => {
                                             />
                                         ))}
                                         {order.items.length > 4 && (
-                                            <div className="w-10 h-10 rounded-lg bg-slate-200 border-2 border-white flex items-center justify-center text-xs font-semibold text-slate-600">
+                                            <div className="w-10 h-10 rounded-lg bg-slate-200 dark:bg-ink-800 border-2 border-white dark:border-ink-900 flex items-center justify-center text-xs font-semibold text-slate-600 dark:text-slate-300">
                                                 +{order.items.length - 4}
                                             </div>
                                         )}
                                     </div>
-                                    <p className="text-sm text-slate-600">
+                                    <p className="text-sm text-slate-600 dark:text-slate-300">
                                         {order.items.length} item
                                         {order.items.length !== 1 ? 's' : ''}
                                     </p>
                                 </div>
 
-                                <div className="mt-4 flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-slate-100">
+                                <div className="mt-4 flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-slate-100 dark:border-ink-800">
                                     <div>
                                         <p className="text-xs text-slate-500 dark:text-slate-400">
                                             Total

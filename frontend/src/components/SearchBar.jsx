@@ -29,7 +29,7 @@ const SearchBar = ({
                     value={search}
                     onChange={(e) => onSearchChange(e.target.value)}
                     placeholder="Search products..."
-                    className="w-full pl-11 pr-4 py-2.5 rounded-lg border border-slate-200 bg-white text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500/40 focus:border-brand-500 transition-all"
+                    className="input-field pl-11"
                 />
             </div>
 
@@ -37,7 +37,7 @@ const SearchBar = ({
             <select
                 value={category}
                 onChange={(e) => onCategoryChange(e.target.value)}
-                className="px-4 py-2.5 rounded-lg border border-slate-200 bg-white text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-500/40 focus:border-brand-500 transition-all cursor-pointer min-w-[180px]"
+                className="input-field cursor-pointer min-w-[180px]"
             >
                 <option value="All Categories">All Categories</option>
                 {categories.map((c) => (
@@ -51,7 +51,7 @@ const SearchBar = ({
             <select
                 value={sort}
                 onChange={(e) => onSortChange(e.target.value)}
-                className="px-4 py-2.5 rounded-lg border border-slate-200 bg-white text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-500/40 focus:border-brand-500 transition-all cursor-pointer min-w-[170px]"
+                className="input-field cursor-pointer min-w-[170px]"
             >
                 <option value="">Sort: Newest</option>
                 <option value="price_asc">Price: Low to High</option>

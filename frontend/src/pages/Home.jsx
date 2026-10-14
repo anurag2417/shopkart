@@ -119,7 +119,7 @@ const Home = () => {
                             <div className="mt-8 flex flex-wrap gap-3">
                                 <Link
                                     to="/products"
-                                    className="hero-cta inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white dark:bg-ink-700 text-brand-700 dark:text-white font-semibold hover:bg-brand-50 dark:hover:bg-ink-600 active:scale-[0.98] transition-all"
+                                    className="hero-cta inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white dark:bg-ink-700 text-brand-700 dark:text-white font-semibold hover:bg-brand-50 dark:hover:bg-ink-600 active:scale-[0.98] transition-all shadow-sm"
                                 >
                                     Browse products
                                     <svg

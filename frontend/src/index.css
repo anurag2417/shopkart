@@ -13,17 +13,19 @@
     }
 
     body {
-        @apply bg-slate-50 dark:bg-ink-950 text-slate-800 antialiased transition-colors duration-300;
+        @apply bg-slate-50 dark:bg-ink-950 text-slate-800 dark:text-slate-100 antialiased transition-colors duration-300;
         font-family:
             'Inter',
             system-ui,
             -apple-system,
             sans-serif;
+        color-scheme: light;
     }
 
     .dark body {
         background-color: #020202;
         color: #e5e7eb;
+        color-scheme: dark;
     }
 
     * {
@@ -55,7 +57,7 @@
     .btn-secondary {
         @apply inline-flex items-center justify-center px-5 py-2.5 rounded-lg
            bg-white text-slate-700 font-medium border border-slate-200
-           hover:bg-slate-50 dark:bg-ink-950 active:scale-[0.98]
+           hover:bg-slate-50 active:scale-[0.98]
            transition-all duration-200
            disabled:opacity-60 disabled:cursor-not-allowed
            dark:bg-ink-900 dark:text-slate-200 dark:border-ink-800
@@ -79,15 +81,15 @@
     }
 
     .surface {
-        @apply bg-white dark:bg-ink-900 border-slate-200 dark:border-ink-800;
+        @apply bg-white dark:bg-ink-900 border border-slate-200 dark:border-ink-800;
     }
 
     .text-muted {
-        @apply text-slate-500 dark:text-slate-400 dark:text-slate-400;
+        @apply text-slate-500 dark:text-slate-400;
     }
 
     .text-strong {
-        @apply text-slate-900 dark:text-white dark:text-white;
+        @apply text-slate-900 dark:text-white;
     }
 
     .shimmer {
@@ -134,6 +136,24 @@
 }
 .dark ::-webkit-scrollbar-thumb:hover {
     background: #0a9548;
+}
+
+select {
+    color-scheme: light;
+}
+
+.dark select {
+    color-scheme: dark;
+}
+
+::selection {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.dark ::selection {
+    background: #04471c;
+    color: #ffffff;
 }
 
 canvas {

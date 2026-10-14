@@ -217,7 +217,7 @@ const Checkout = () => {
                             </h2>
 
                             {serverError && (
-                                <div className="mb-4 px-4 py-3 rounded-lg bg-red-50 border border-red-100 text-red-700 text-sm">
+                                <div className="mb-4 px-4 py-3 rounded-lg bg-red-50 dark:bg-red-950/40 border border-red-100 dark:border-red-900/60 text-red-700 dark:text-red-300 text-sm">
                                     {serverError}
                                 </div>
                             )}
@@ -301,14 +301,14 @@ const Checkout = () => {
                                             <img
                                                 src={item.product.image}
                                                 alt={item.product.name}
-                                                className="w-12 h-12 rounded-lg object-cover bg-slate-100 flex-shrink-0"
+                                                className="w-12 h-12 rounded-lg object-cover bg-slate-100 dark:bg-ink-800 flex-shrink-0"
                                                 onError={(e) => {
                                                     e.target.src =
                                                         'https://via.placeholder.com/80?text=No';
                                                 }}
                                             />
                                             <div className="flex-1 min-w-0">
-                                                <p className="text-sm font-medium text-slate-800 truncate">
+                                                <p className="text-sm font-medium text-slate-800 dark:text-slate-100 truncate">
                                                     {item.product.name}
                                                 </p>
                                                 <p className="text-xs text-slate-500 dark:text-slate-400">
@@ -326,12 +326,12 @@ const Checkout = () => {
                                     ))}
                                 </div>
 
-                                <div className="space-y-3 text-sm border-t border-slate-100 pt-4">
-                                    <div className="flex justify-between text-slate-600">
+                                <div className="space-y-3 text-sm border-t border-slate-100 dark:border-ink-800 pt-4">
+                                    <div className="flex justify-between text-slate-600 dark:text-slate-300">
                                         <span>Items ({totalUnits})</span>
                                         <span>₹{subtotal.toLocaleString('en-IN')}</span>
                                     </div>
-                                    <div className="flex justify-between text-slate-600">
+                                    <div className="flex justify-between text-slate-600 dark:text-slate-300">
                                         <span>Delivery</span>
                                         <span
                                             className={

@@ -62,8 +62,8 @@ const AddToCartButton = ({ product, variant = 'card', className = '' }) => {
             disabled={busy || outOfStock}
             className={`inline-flex items-center justify-center w-full px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${
                 outOfStock
-                    ? 'bg-slate-100 text-slate-400 cursor-not-allowed'
-                    : 'bg-brand-600 text-white hover:bg-brand-700 active:scale-[0.98]'
+                    ? 'bg-slate-100 text-slate-400 cursor-not-allowed dark:bg-ink-800 dark:text-slate-500'
+                    : 'bg-brand-600 text-white hover:bg-brand-700 dark:bg-ink-700 dark:hover:bg-ink-600 active:scale-[0.98]'
             } ${className}`}
         >
             {label}
