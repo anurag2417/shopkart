@@ -7,6 +7,7 @@ import connectDB from './config/db.js';
 import customerRoutes from './routes/customer.routes.js';
 import productRoutes from './routes/product.routes.js';
 import wishlistRoutes from './routes/wishlist.routes.js';
+import cartRoutes from './routes/cart.routes.js';
 
 dotenv.config();
 connectDB();
@@ -36,6 +37,7 @@ app.get('/', (req, res) => {
 app.use('/customers', customerRoutes);
 app.use('/products', productRoutes);
 app.use('/wishlist', wishlistRoutes);
+app.use('/cart', cartRoutes);
 
 // ------------------ 404 ------------------
 app.use((req, res) => {

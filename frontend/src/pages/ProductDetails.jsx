@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import WishlistButton from '../components/WishlistButton';
+import AddToCartButton from '../components/AddToCartButton';
 import { fetchProductById } from '../services/api';
 
 const ProductDetails = () => {
@@ -88,7 +89,6 @@ const ProductDetails = () => {
 
                 {!loading && !error && product && (
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 animate-fade-in">
-                        {/* Image */}
                         <div className="bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm">
                             <div className="aspect-square bg-slate-100">
                                 <img
@@ -103,7 +103,6 @@ const ProductDetails = () => {
                             </div>
                         </div>
 
-                        {/* Info */}
                         <div className="flex flex-col">
                             <span className="inline-flex self-start px-3 py-1 rounded-full bg-brand-50 text-brand-700 text-xs font-medium">
                                 {product.category}
@@ -137,12 +136,7 @@ const ProductDetails = () => {
                             </div>
 
                             <div className="mt-8 flex flex-col sm:flex-row gap-3">
-                                <button
-                                    disabled={product.stock === 0}
-                                    className="btn-primary flex-1"
-                                >
-                                    Add to Cart
-                                </button>
+                                <AddToCartButton product={product} variant="full" />
                                 <WishlistButton product={product} variant="full" />
                             </div>
 

@@ -99,6 +99,12 @@ const Home = () => {
                             >
                                 My Wishlist <span>→</span>
                             </Link>
+                            <Link
+                                to="/cart"
+                                className="px-4 py-3 rounded-lg bg-slate-50 hover:bg-slate-100 text-slate-700 font-medium text-sm flex items-center justify-between transition-colors"
+                            >
+                                My Cart <span>→</span>
+                            </Link>
                         </div>
                     </div>
                 </section>

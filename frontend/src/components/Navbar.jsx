@@ -2,10 +2,12 @@ import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useWishlist } from '../context/WishlistContext';
+import { useCart } from '../context/CartContext';
 
 const Navbar = () => {
     const { user, logout } = useAuth();
-    const { count } = useWishlist();
+    const { count: wishlistCount } = useWishlist();
+    const { totalUnits: cartUnits } = useCart();
     const navigate = useNavigate();
     const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -25,7 +27,6 @@ const Navbar = () => {
         <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
             <nav className="w-full px-4 sm:px-6 lg:px-10">
                 <div className="flex items-center justify-between h-16">
-                    {/* Logo */}
                     <Link to="/home" className="flex items-center gap-2">
                         <div className="w-9 h-9 rounded-lg bg-brand-600 flex items-center justify-center">
                             <svg
@@ -56,9 +57,19 @@ const Navbar = () => {
                         <NavLink to="/wishlist" className={linkClass}>
                             <span className="relative inline-flex items-center gap-1.5">
                                 Wishlist
-                                {count > 0 && (
+                                {wishlistCount > 0 && (
                                     <span className="inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 rounded-full bg-red-500 text-white text-[10px] font-bold">
-                                        {count}
+                                        {wishlistCount}
+                                    </span>
+                                )}
+                            </span>
+                        </NavLink>
+                        <NavLink to="/cart" className={linkClass}>
+                            <span className="relative inline-flex items-center gap-1.5">
+                                Cart
+                                {cartUnits > 0 && (
+                                    <span className="inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 rounded-full bg-brand-600 text-white text-[10px] font-bold">
+                                        {cartUnits}
                                     </span>
                                 )}
                             </span>
@@ -91,7 +102,7 @@ const Navbar = () => {
                         )}
                     </div>
 
-                    {/* Mobile menu button */}
+                    {/* Mobile toggle */}
                     <button
                         className="md:hidden p-2 rounded-lg hover:bg-slate-100 relative"
                         onClick={() => setMobileOpen((v) => !v)}
@@ -118,9 +129,9 @@ const Navbar = () => {
                                 />
                             )}
                         </svg>
-                        {count > 0 && !mobileOpen && (
-                            <span className="absolute -top-0.5 -right-0.5 inline-flex items-center justify-center min-w-[18px] h-[18px] px-1 rounded-full bg-red-500 text-white text-[10px] font-bold">
-                                {count}
+                        {cartUnits > 0 && !mobileOpen && (
+                            <span className="absolute -top-0.5 -right-0.5 inline-flex items-center justify-center min-w-[18px] h-[18px] px-1 rounded-full bg-brand-600 text-white text-[10px] font-bold">
+                                {cartUnits}
                             </span>
                         )}
                     </button>
@@ -150,9 +161,23 @@ const Navbar = () => {
                         >
                             <span className="inline-flex items-center gap-2">
                                 Wishlist
-                                {count > 0 && (
+                                {wishlistCount > 0 && (
                                     <span className="inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 rounded-full bg-red-500 text-white text-[10px] font-bold">
-                                        {count}
+                                        {wishlistCount}
+                                    </span>
+                                )}
+                            </span>
+                        </NavLink>
+                        <NavLink
+                            to="/cart"
+                            className={linkClass}
+                            onClick={() => setMobileOpen(false)}
+                        >
+                            <span className="inline-flex items-center gap-2">
+                                Cart
+                                {cartUnits > 0 && (
+                                    <span className="inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 rounded-full bg-brand-600 text-white text-[10px] font-bold">
+                                        {cartUnits}
                                     </span>
                                 )}
                             </span>

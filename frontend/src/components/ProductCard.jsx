@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import WishlistButton from './WishlistButton';
+import AddToCartButton from './AddToCartButton';
 
 const ProductCard = ({ product }) => {
     const inStock = product.stock > 0;
@@ -36,7 +37,6 @@ const ProductCard = ({ product }) => {
                     </div>
                 </Link>
 
-                {/* Wishlist heart — positioned top-right, outside the Link */}
                 <div className="absolute top-3 right-3">
                     <WishlistButton product={product} variant="icon" />
                 </div>
@@ -67,12 +67,15 @@ const ProductCard = ({ product }) => {
                     </p>
                 </div>
 
-                <Link
-                    to={`/products/${product._id}`}
-                    className="mt-4 inline-flex items-center justify-center w-full px-4 py-2.5 rounded-lg border border-slate-200 text-slate-700 text-sm font-medium hover:bg-slate-900 hover:text-white hover:border-slate-900 transition-all duration-200"
-                >
-                    View Details
-                </Link>
+                <div className="mt-4 grid grid-cols-2 gap-2">
+                    <Link
+                        to={`/products/${product._id}`}
+                        className="inline-flex items-center justify-center px-4 py-2.5 rounded-lg border border-slate-200 text-slate-700 text-sm font-medium hover:bg-slate-900 hover:text-white hover:border-slate-900 transition-all duration-200"
+                    >
+                        View
+                    </Link>
+                    <AddToCartButton product={product} variant="card" />
+                </div>
             </div>
         </div>
     );
