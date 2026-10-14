@@ -1,6 +1,6 @@
 import { Suspense, useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Float, Environment } from '@react-three/drei';
+import { Float } from '@react-three/drei';
 
 const FloatingObject = () => {
     const meshRef = useRef();
@@ -36,10 +36,9 @@ const Hero3D = () => {
             >
                 <Suspense fallback={null}>
                     <ambientLight intensity={0.6} />
-                    <directionalLight position={[4, 4, 4]} intensity={1.1} />
+                    <directionalLight position={[4, 4, 4]} intensity={1.1} color="#ffffff" />
                     <directionalLight position={[-4, -2, -3]} intensity={0.5} color="#93c5fd" />
                     <FloatingObject />
-                    <Environment preset="city" />
                 </Suspense>
             </Canvas>
         </div>

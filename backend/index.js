@@ -1,4 +1,4 @@
-import './config/env.js';
+import './config/env.js'; // 🔑 MUST be the very first import
 
 import express from 'express';
 import cookieParser from 'cookie-parser';
@@ -16,39 +16,62 @@ connectDB();
 const app = express();
 
 // ------------------ TRUST PROXY (Render / Vercel) ------------------
-// Needed so `secure` cookies work behind a reverse proxy.
+// Required for `secure` cookies behind a reverse proxy.
 app.set('trust proxy', 1);
 
 // ------------------ CORS ------------------
-// CLIENT_URL can be a single URL or a comma-separated list.
-const allowedOrigins = (process.env.CLIENT_URL || 'http://localhost:5173')
-    .split(',')
-    .map((s) => s.trim());
+// Read CLIENT_URL at request time (not import time) so Render env changes
+// are picked up immediately after a redeploy.
+const getAllowedOrigins = () => {
+    const raw = process.env.CLIENT_URL || 'http://localhost:5173';
+    return raw
+        .split(',')
+        .map((s) => s.trim().replace(/\/$/, '')) // strip trailing slash
+        .filter(Boolean);
+};
 
-app.use(
-    cors({
-        origin: (origin, callback) => {
-            // Allow requests with no origin (Postman, curl, mobile apps)
-            if (!origin) return callback(null, true);
-            if (allowedOrigins.includes(origin)) return callback(null, true);
-            return callback(new Error(`CORS blocked: ${origin}`));
-        },
-        credentials: true,
-    }),
-);
+const corsOptions = {
+    origin: (origin, callback) => {
+        // Allow requests with no origin (Postman, curl, mobile apps, server-to-server)
+        if (!origin) return callback(null, true);
+
+        const allowed = getAllowedOrigins();
+        const clean = origin.replace(/\/$/, '');
+
+        if (allowed.includes(clean)) {
+            return callback(null, true);
+        }
+
+        // 🚫 Do NOT throw — silently deny. Throwing causes a 500 error
+        // which the browser reports as a CORS failure.
+        console.warn(`⚠️ CORS blocked origin: ${origin}`);
+        return callback(null, false);
+    },
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    maxAge: 86400, // Cache preflight for 24h
+};
+
+// Handle preflight for all routes
+app.options('*', cors(corsOptions));
+
+// Apply CORS to all requests
+app.use(cors(corsOptions));
 
 // ------------------ BODY PARSERS ------------------
 app.use(express.json({ limit: '1mb' }));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-// ------------------ HEALTH CHECK ------------------
+// ------------------ HEALTH / ROOT ------------------
 app.get('/', (req, res) => {
     res.json({
         success: true,
         message: '🛒 ShopKart API is running',
         version: '1.0.0',
         env: process.env.NODE_ENV || 'development',
+        allowedOrigins: getAllowedOrigins(), // 👈 helpful for debugging
     });
 });
 
@@ -83,5 +106,5 @@ app.use((err, req, res, next) => {
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
     console.log(`🚀 Server running on port ${PORT}`);
-    console.log(`🌍 CORS allowed origins: ${allowedOrigins.join(', ')}`);
+    console.log(`🌍 CORS allowed origins: ${getAllowedOrigins().join(', ')}`);
 });
