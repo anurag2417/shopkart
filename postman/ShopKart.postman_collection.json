@@ -1,0 +1,385 @@
+{
+    "info": {
+        "_postman_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+        "name": "ShopKart",
+        "description": "Complete API collection for ShopKart — MERN e-commerce backend.\n\nSet `baseUrl` to switch between local and production.",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Auth",
+            "item": [
+                {
+                    "name": "Register",
+                    "request": {
+                        "method": "POST",
+                        "header": [{ "key": "Content-Type", "value": "application/json" }],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"fullName\": \"John Doe\",\n  \"email\": \"john{{$timestamp}}@example.com\",\n  \"password\": \"john123\",\n  \"phone\": \"9876543210\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/customers/register",
+                            "host": ["{{baseUrl}}"],
+                            "path": ["customers", "register"]
+                        }
+                    }
+                },
+                {
+                    "name": "Login",
+                    "request": {
+                        "method": "POST",
+                        "header": [{ "key": "Content-Type", "value": "application/json" }],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"email\": \"john@example.com\",\n  \"password\": \"john123\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/customers/login",
+                            "host": ["{{baseUrl}}"],
+                            "path": ["customers", "login"]
+                        }
+                    }
+                },
+                {
+                    "name": "Get Me",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{baseUrl}}/customers/me",
+                            "host": ["{{baseUrl}}"],
+                            "path": ["customers", "me"]
+                        }
+                    }
+                },
+                {
+                    "name": "Logout",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "{{baseUrl}}/customers/logout",
+                            "host": ["{{baseUrl}}"],
+                            "path": ["customers", "logout"]
+                        }
+                    }
+                },
+                {
+                    "name": "Change Password",
+                    "request": {
+                        "method": "PATCH",
+                        "header": [{ "key": "Content-Type", "value": "application/json" }],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"oldPassword\": \"john123\",\n  \"newPassword\": \"john456\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/customers/change-password",
+                            "host": ["{{baseUrl}}"],
+                            "path": ["customers", "change-password"]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Products",
+            "item": [
+                {
+                    "name": "List Products",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{baseUrl}}/products",
+                            "host": ["{{baseUrl}}"],
+                            "path": ["products"]
+                        }
+                    }
+                },
+                {
+                    "name": "Search",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{baseUrl}}/products?search=keyboard",
+                            "host": ["{{baseUrl}}"],
+                            "path": ["products"],
+                            "query": [{ "key": "search", "value": "keyboard" }]
+                        }
+                    }
+                },
+                {
+                    "name": "Filter by Category",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{baseUrl}}/products?category=Electronics",
+                            "host": ["{{baseUrl}}"],
+                            "path": ["products"],
+                            "query": [{ "key": "category", "value": "Electronics" }]
+                        }
+                    }
+                },
+                {
+                    "name": "Sort by Price",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{baseUrl}}/products?sort=price_asc",
+                            "host": ["{{baseUrl}}"],
+                            "path": ["products"],
+                            "query": [{ "key": "sort", "value": "price_asc" }]
+                        }
+                    }
+                },
+                {
+                    "name": "Categories",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{baseUrl}}/products/categories",
+                            "host": ["{{baseUrl}}"],
+                            "path": ["products", "categories"]
+                        }
+                    }
+                },
+                {
+                    "name": "Create Product",
+                    "request": {
+                        "method": "POST",
+                        "header": [{ "key": "Content-Type", "value": "application/json" }],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"name\": \"Test Product\",\n  \"description\": \"A test product\",\n  \"price\": 999,\n  \"category\": \"Electronics\",\n  \"image\": \"https://via.placeholder.com/400\",\n  \"stock\": 10\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/products",
+                            "host": ["{{baseUrl}}"],
+                            "path": ["products"]
+                        }
+                    }
+                },
+                {
+                    "name": "Get Product by ID",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{baseUrl}}/products/:id",
+                            "host": ["{{baseUrl}}"],
+                            "path": ["products", ":id"],
+                            "variable": [{ "key": "id", "value": "REPLACE_WITH_PRODUCT_ID" }]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Wishlist",
+            "item": [
+                {
+                    "name": "Get Wishlist",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{baseUrl}}/wishlist",
+                            "host": ["{{baseUrl}}"],
+                            "path": ["wishlist"]
+                        }
+                    }
+                },
+                {
+                    "name": "Add to Wishlist",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "{{baseUrl}}/wishlist/:productId",
+                            "host": ["{{baseUrl}}"],
+                            "path": ["wishlist", ":productId"],
+                            "variable": [{ "key": "productId", "value": "REPLACE_WITH_PRODUCT_ID" }]
+                        }
+                    }
+                },
+                {
+                    "name": "Remove from Wishlist",
+                    "request": {
+                        "method": "DELETE",
+                        "url": {
+                            "raw": "{{baseUrl}}/wishlist/:productId",
+                            "host": ["{{baseUrl}}"],
+                            "path": ["wishlist", ":productId"],
+                            "variable": [{ "key": "productId", "value": "REPLACE_WITH_PRODUCT_ID" }]
+                        }
+                    }
+                },
+                {
+                    "name": "Toggle Wishlist",
+                    "request": {
+                        "method": "PATCH",
+                        "url": {
+                            "raw": "{{baseUrl}}/wishlist/:productId/toggle",
+                            "host": ["{{baseUrl}}"],
+                            "path": ["wishlist", ":productId", "toggle"],
+                            "variable": [{ "key": "productId", "value": "REPLACE_WITH_PRODUCT_ID" }]
+                        }
+                    }
+                },
+                {
+                    "name": "Wishlist Count",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{baseUrl}}/wishlist/count",
+                            "host": ["{{baseUrl}}"],
+                            "path": ["wishlist", "count"]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Cart",
+            "item": [
+                {
+                    "name": "Get Cart",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{baseUrl}}/cart",
+                            "host": ["{{baseUrl}}"],
+                            "path": ["cart"]
+                        }
+                    }
+                },
+                {
+                    "name": "Add to Cart",
+                    "request": {
+                        "method": "POST",
+                        "url": {
+                            "raw": "{{baseUrl}}/cart/:productId",
+                            "host": ["{{baseUrl}}"],
+                            "path": ["cart", ":productId"],
+                            "variable": [{ "key": "productId", "value": "REPLACE_WITH_PRODUCT_ID" }]
+                        }
+                    }
+                },
+                {
+                    "name": "Update Quantity",
+                    "request": {
+                        "method": "PATCH",
+                        "header": [{ "key": "Content-Type", "value": "application/json" }],
+                        "body": { "mode": "raw", "raw": "{\n  \"quantity\": 3\n}" },
+                        "url": {
+                            "raw": "{{baseUrl}}/cart/:productId",
+                            "host": ["{{baseUrl}}"],
+                            "path": ["cart", ":productId"],
+                            "variable": [{ "key": "productId", "value": "REPLACE_WITH_PRODUCT_ID" }]
+                        }
+                    }
+                },
+                {
+                    "name": "Remove from Cart",
+                    "request": {
+                        "method": "DELETE",
+                        "url": {
+                            "raw": "{{baseUrl}}/cart/:productId",
+                            "host": ["{{baseUrl}}"],
+                            "path": ["cart", ":productId"],
+                            "variable": [{ "key": "productId", "value": "REPLACE_WITH_PRODUCT_ID" }]
+                        }
+                    }
+                },
+                {
+                    "name": "Cart Count",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{baseUrl}}/cart/count",
+                            "host": ["{{baseUrl}}"],
+                            "path": ["cart", "count"]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Orders",
+            "item": [
+                {
+                    "name": "Create Payment Order",
+                    "request": {
+                        "method": "POST",
+                        "header": [{ "key": "Content-Type", "value": "application/json" }],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"shippingAddress\": {\n    \"fullName\": \"Aarav Sharma\",\n    \"phone\": \"9876543210\",\n    \"addressLine1\": \"22 MG Road\",\n    \"city\": \"Bengaluru\",\n    \"state\": \"Karnataka\",\n    \"pincode\": \"560001\"\n  }\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/orders/create-payment-order",
+                            "host": ["{{baseUrl}}"],
+                            "path": ["orders", "create-payment-order"]
+                        }
+                    }
+                },
+                {
+                    "name": "Verify Payment",
+                    "request": {
+                        "method": "POST",
+                        "header": [{ "key": "Content-Type", "value": "application/json" }],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"shopKartOrderId\": \"...\",\n  \"razorpay_order_id\": \"order_xxx\",\n  \"razorpay_payment_id\": \"pay_xxx\",\n  \"razorpay_signature\": \"signature_xxx\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/orders/verify-payment",
+                            "host": ["{{baseUrl}}"],
+                            "path": ["orders", "verify-payment"]
+                        }
+                    }
+                },
+                {
+                    "name": "Get My Orders",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{baseUrl}}/orders",
+                            "host": ["{{baseUrl}}"],
+                            "path": ["orders"]
+                        }
+                    }
+                },
+                {
+                    "name": "Get Order by ID",
+                    "request": {
+                        "method": "GET",
+                        "url": {
+                            "raw": "{{baseUrl}}/orders/:id",
+                            "host": ["{{baseUrl}}"],
+                            "path": ["orders", ":id"],
+                            "variable": [{ "key": "id", "value": "REPLACE_WITH_ORDER_ID" }]
+                        }
+                    }
+                },
+                {
+                    "name": "Update Order Status (bonus)",
+                    "request": {
+                        "method": "PATCH",
+                        "header": [{ "key": "Content-Type", "value": "application/json" }],
+                        "body": { "mode": "raw", "raw": "{\n  \"status\": \"CONFIRMED\"\n}" },
+                        "url": {
+                            "raw": "{{baseUrl}}/orders/:id/status",
+                            "host": ["{{baseUrl}}"],
+                            "path": ["orders", ":id", "status"],
+                            "variable": [{ "key": "id", "value": "REPLACE_WITH_ORDER_ID" }]
+                        }
+                    }
+                }
+            ]
+        }
+    ],
+    "variable": [
+        {
+            "key": "baseUrl",
+            "value": "http://localhost:5000",
+            "type": "string"
+        }
+    ]
+}
