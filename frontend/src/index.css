@@ -13,15 +13,19 @@
   }
 
   body {
-    @apply bg-slate-50 text-slate-800 antialiased;
+    @apply bg-slate-50 text-slate-800 antialiased transition-colors duration-300;
     font-family: "Inter", system-ui, -apple-system, sans-serif;
+  }
+
+  .dark body {
+    background-color: #020202;
+    color: #e5e7eb;
   }
 
   * {
     box-sizing: border-box;
   }
 
-  /* ✅ Respect user's reduced-motion preference */
   @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
@@ -40,7 +44,8 @@
            bg-brand-600 text-white font-medium shadow-sm
            hover:bg-brand-700 active:scale-[0.98]
            transition-all duration-200
-           disabled:opacity-60 disabled:cursor-not-allowed;
+           disabled:opacity-60 disabled:cursor-not-allowed
+           dark:bg-ink-700 dark:hover:bg-ink-600 dark:shadow-[0_0_20px_-6px_#16DB65];
   }
 
   .btn-secondary {
@@ -48,22 +53,39 @@
            bg-white text-slate-700 font-medium border border-slate-200
            hover:bg-slate-50 active:scale-[0.98]
            transition-all duration-200
-           disabled:opacity-60 disabled:cursor-not-allowed;
+           disabled:opacity-60 disabled:cursor-not-allowed
+           dark:bg-ink-900 dark:text-slate-200 dark:border-ink-800
+           dark:hover:bg-ink-800;
   }
 
   .input-field {
     @apply w-full px-4 py-2.5 rounded-lg border border-slate-200
            bg-white text-slate-800 placeholder-slate-400
            focus:outline-none focus:ring-2 focus:ring-brand-500/40
-           focus:border-brand-500 transition-all duration-200;
+           focus:border-brand-500 transition-all duration-200
+           dark:bg-ink-900 dark:border-ink-800 dark:text-slate-100
+           dark:placeholder-slate-500 dark:focus:ring-ink-600/40
+           dark:focus:border-ink-700;
   }
 
   .card {
     @apply bg-white rounded-2xl shadow-sm border border-slate-100
-           hover:shadow-md transition-shadow duration-300;
+           hover:shadow-md transition-all duration-300
+           dark:bg-ink-900 dark:border-ink-800 dark:hover:shadow-[0_0_30px_-10px_#0A9548];
   }
 
-  /* 🌀 Skeleton shimmer */
+  .surface {
+    @apply bg-white dark:bg-ink-900 border-slate-200 dark:border-ink-800;
+  }
+
+  .text-muted {
+    @apply text-slate-500 dark:text-slate-400;
+  }
+
+  .text-strong {
+    @apply text-slate-900 dark:text-white;
+  }
+
   .shimmer {
     background: linear-gradient(
       90deg,
@@ -73,6 +95,16 @@
     );
     background-size: 200% 100%;
     animation: shimmer 1.6s infinite linear;
+  }
+
+  .dark .shimmer {
+    background: linear-gradient(
+      90deg,
+      #0D2818 0%,
+      #04471C 40%,
+      #0D2818 80%
+    );
+    background-size: 200% 100%;
   }
 }
 
@@ -85,7 +117,6 @@
   }
 }
 
-/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -101,7 +132,16 @@
   background: #94a3b8;
 }
 
-/* Hide default outline for canvas interactions */
+.dark ::-webkit-scrollbar-track {
+  background: #0D2818;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #04471C;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #0A9548;
+}
+
 canvas {
   outline: none;
   touch-action: none;

@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
 import { useWishlist } from '../context/WishlistContext';
 import { useCart } from '../context/CartContext';
+import ThemeToggle from './ThemeToggle';
 
 const Navbar = () => {
     const { user, logout } = useAuth();
@@ -14,18 +15,18 @@ const Navbar = () => {
 
     const handleLogout = async () => {
         await logout();
-        navigate('/login');
+        navigate('/');
     };
 
     const linkClass = ({ isActive }) =>
         `px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
             isActive
-                ? 'bg-brand-50 text-brand-700'
-                : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+                ? 'bg-brand-50 text-brand-700 dark:bg-ink-800 dark:text-ink-600'
+                : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100 dark:text-slate-300 dark:hover:text-white dark:hover:bg-ink-800'
         }`;
 
     return (
-        <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
+        <header className="sticky top-0 z-50 bg-white/80 dark:bg-ink-950/80 backdrop-blur-md border-b border-slate-200 dark:border-ink-800">
             <nav className="w-full px-4 sm:px-6 lg:px-10">
                 <div className="flex items-center justify-between h-16">
                     {/* Logo */}
@@ -33,7 +34,7 @@ const Navbar = () => {
                         <motion.div
                             whileHover={{ rotate: -6, scale: 1.05 }}
                             transition={{ type: 'spring', stiffness: 400, damping: 20 }}
-                            className="w-9 h-9 rounded-lg bg-brand-600 flex items-center justify-center"
+                            className="w-9 h-9 rounded-lg bg-brand-600 dark:bg-ink-700 flex items-center justify-center"
                         >
                             <svg
                                 className="w-5 h-5 text-white"
@@ -49,10 +50,12 @@ const Navbar = () => {
                                 />
                             </svg>
                         </motion.div>
-                        <span className="text-lg font-bold text-slate-900">ShopKart</span>
+                        <span className="text-lg font-bold text-slate-900 dark:text-white">
+                            ShopKart
+                        </span>
                     </Link>
 
-                    {/* Desktop Links */}
+                    {/* Desktop links */}
                     <div className="hidden md:flex items-center gap-1">
                         <NavLink to="/home" className={linkClass}>
                             Home
@@ -98,7 +101,7 @@ const Navbar = () => {
                                                 stiffness: 500,
                                                 damping: 25,
                                             }}
-                                            className="inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 rounded-full bg-brand-600 text-white text-[10px] font-bold"
+                                            className="inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 rounded-full bg-brand-600 dark:bg-ink-700 text-white text-[10px] font-bold"
                                         >
                                             {cartUnits}
                                         </motion.span>
@@ -113,11 +116,12 @@ const Navbar = () => {
 
                     {/* Right side */}
                     <div className="hidden md:flex items-center gap-3">
+                        <ThemeToggle />
                         {user ? (
                             <>
-                                <span className="text-sm text-slate-500">
+                                <span className="text-sm text-slate-500 dark:text-slate-400">
                                     Hi,{' '}
-                                    <span className="font-medium text-slate-800">
+                                    <span className="font-medium text-slate-800 dark:text-white">
                                         {user.fullName?.split(' ')[0]}
                                     </span>
                                 </span>
@@ -133,23 +137,23 @@ const Navbar = () => {
                         ) : (
                             <>
                                 <Link to="/login" className="btn-secondary text-sm">
-                                    Login
+                                    Sign in
                                 </Link>
                                 <Link to="/register" className="btn-primary text-sm">
-                                    Sign up
+                                    Get started
                                 </Link>
                             </>
                         )}
                     </div>
 
-                    {/* Mobile menu button */}
+                    {/* Mobile toggle */}
                     <button
-                        className="md:hidden p-2 rounded-lg hover:bg-slate-100 relative"
+                        className="md:hidden p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-ink-800 relative"
                         onClick={() => setMobileOpen((v) => !v)}
                         aria-label="Toggle menu"
                     >
                         <svg
-                            className="w-6 h-6 text-slate-700"
+                            className="w-6 h-6 text-slate-700 dark:text-slate-200"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -169,7 +173,6 @@ const Navbar = () => {
                                 />
                             )}
                         </svg>
-
                         <AnimatePresence>
                             {cartUnits > 0 && !mobileOpen && (
                                 <motion.span
@@ -182,7 +185,7 @@ const Navbar = () => {
                                         stiffness: 500,
                                         damping: 25,
                                     }}
-                                    className="absolute -top-0.5 -right-0.5 inline-flex items-center justify-center min-w-[18px] h-[18px] px-1 rounded-full bg-brand-600 text-white text-[10px] font-bold"
+                                    className="absolute -top-0.5 -right-0.5 inline-flex items-center justify-center min-w-[18px] h-[18px] px-1 rounded-full bg-brand-600 dark:bg-ink-700 text-white text-[10px] font-bold"
                                 >
                                     {cartUnits}
                                 </motion.span>
@@ -191,7 +194,7 @@ const Navbar = () => {
                     </button>
                 </div>
 
-                {/* Mobile Menu */}
+                {/* Mobile menu */}
                 <AnimatePresence>
                     {mobileOpen && (
                         <motion.div
@@ -199,7 +202,7 @@ const Navbar = () => {
                             animate={{ opacity: 1, height: 'auto' }}
                             exit={{ opacity: 0, height: 0 }}
                             transition={{ duration: 0.25, ease: 'easeOut' }}
-                            className="md:hidden overflow-hidden border-t border-slate-100"
+                            className="md:hidden overflow-hidden border-t border-slate-100 dark:border-ink-800"
                         >
                             <div className="py-3 flex flex-col gap-1">
                                 <NavLink
@@ -238,7 +241,7 @@ const Navbar = () => {
                                     <span className="inline-flex items-center gap-2">
                                         Cart
                                         {cartUnits > 0 && (
-                                            <span className="inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 rounded-full bg-brand-600 text-white text-[10px] font-bold">
+                                            <span className="inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 rounded-full bg-brand-600 dark:bg-ink-700 text-white text-[10px] font-bold">
                                                 {cartUnits}
                                             </span>
                                         )}
@@ -252,34 +255,37 @@ const Navbar = () => {
                                     Orders
                                 </NavLink>
 
-                                {user ? (
-                                    <button
-                                        onClick={() => {
-                                            setMobileOpen(false);
-                                            handleLogout();
-                                        }}
-                                        className="text-left px-3 py-2 rounded-lg text-sm font-medium text-red-600 hover:bg-red-50"
-                                    >
-                                        Logout
-                                    </button>
-                                ) : (
-                                    <>
-                                        <NavLink
-                                            to="/login"
-                                            className={linkClass}
-                                            onClick={() => setMobileOpen(false)}
+                                <div className="flex items-center justify-between pt-3 mt-2 border-t border-slate-100 dark:border-ink-800">
+                                    <ThemeToggle />
+                                    {user ? (
+                                        <button
+                                            onClick={() => {
+                                                setMobileOpen(false);
+                                                handleLogout();
+                                            }}
+                                            className="px-3 py-2 rounded-lg text-sm font-medium text-red-600 hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-950/40"
                                         >
-                                            Login
-                                        </NavLink>
-                                        <NavLink
-                                            to="/register"
-                                            className={linkClass}
-                                            onClick={() => setMobileOpen(false)}
-                                        >
-                                            Sign up
-                                        </NavLink>
-                                    </>
-                                )}
+                                            Logout
+                                        </button>
+                                    ) : (
+                                        <div className="flex gap-2">
+                                            <NavLink
+                                                to="/login"
+                                                className={linkClass}
+                                                onClick={() => setMobileOpen(false)}
+                                            >
+                                                Sign in
+                                            </NavLink>
+                                            <NavLink
+                                                to="/register"
+                                                className={linkClass}
+                                                onClick={() => setMobileOpen(false)}
+                                            >
+                                                Get started
+                                            </NavLink>
+                                        </div>
+                                    )}
+                                </div>
                             </div>
                         </motion.div>
                     )}

@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
     content: ['./index.html', './src/**/*.{js,jsx}'],
+    darkMode: 'class',
     theme: {
         extend: {
             colors: {
@@ -15,6 +16,14 @@ export default {
                     700: '#1d4ed8',
                     800: '#1e40af',
                     900: '#1e3a8a',
+                },
+                // 🌿 ShopKart dark palette
+                ink: {
+                    950: '#020202',
+                    900: '#0D2818',
+                    800: '#04471C',
+                    700: '#0A9548',
+                    600: '#16DB65',
                 },
             },
             fontFamily: {
