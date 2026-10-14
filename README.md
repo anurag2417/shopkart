@@ -4,7 +4,7 @@
 
 ### A full-stack MERN e-commerce application with JWT auth, persistent cart, wishlist, Razorpay payments and order history.
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-Vercel-black?style=for-the-badge&logo=vercel)](https://shopkart-yourname.vercel.app)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Vercel-black?style=for-the-badge&logo=vercel)](https://shopkart-delta-eight.vercel.app/)
 [![API](https://img.shields.io/badge/API-Render-46E3B7?style=for-the-badge&logo=render)](https://shopkart-api-g41f.onrender.com)
 [![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-47A248?style=for-the-badge&logo=mongodb)](https://www.mongodb.com/atlas)
 [![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react)](https://react.dev)
