@@ -1,7 +1,11 @@
 import axios from 'axios';
 
+// 🔑 Uses VITE_API_URL in production (set on Vercel).
+//    Falls back to localhost for local dev.
+const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
 const api = axios.create({
-    baseURL: 'http://localhost:5000',
+    baseURL: BASE_URL,
     withCredentials: true,
     headers: { 'Content-Type': 'application/json' },
 });
@@ -46,9 +50,7 @@ export const getCartCount = () => api.get('/cart/count');
 // -----------------------------------------------------------
 export const createPaymentOrder = (shippingAddress) =>
     api.post('/orders/create-payment-order', { shippingAddress });
-
 export const verifyPayment = (payload) => api.post('/orders/verify-payment', payload);
-
 export const getMyOrders = () => api.get('/orders');
 export const getOrderById = (id) => api.get(`/orders/${id}`);
 export const updateOrderStatus = (id, status) => api.patch(`/orders/${id}/status`, { status });
