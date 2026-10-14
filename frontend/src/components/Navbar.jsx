@@ -13,6 +13,13 @@ const Navbar = () => {
     const navigate = useNavigate();
     const [mobileOpen, setMobileOpen] = useState(false);
 
+    const initials = (user?.fullName || 'S')
+        .split(' ')
+        .map((w) => w[0])
+        .slice(0, 2)
+        .join('')
+        .toUpperCase();
+
     const handleLogout = async () => {
         await logout();
         navigate('/');
@@ -22,7 +29,7 @@ const Navbar = () => {
         `px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
             isActive
                 ? 'bg-brand-50 text-brand-700 dark:bg-ink-800 dark:text-ink-600'
-                : 'text-slate-600 hover:text-slate-900 dark:text-white hover:bg-slate-100 dark:text-slate-300 dark:hover:text-white dark:hover:bg-ink-800'
+                : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100 dark:text-slate-300 dark:hover:text-white dark:hover:bg-ink-800'
         }`;
 
     return (
@@ -50,7 +57,7 @@ const Navbar = () => {
                                 />
                             </svg>
                         </motion.div>
-                        <span className="text-lg font-bold text-slate-900 dark:text-white dark:text-white">
+                        <span className="text-lg font-bold text-slate-900 dark:text-white">
                             ShopKart
                         </span>
                     </Link>
@@ -118,22 +125,24 @@ const Navbar = () => {
                     <div className="hidden md:flex items-center gap-3">
                         <ThemeToggle />
                         {user ? (
-                            <>
-                                <span className="text-sm text-slate-500 dark:text-slate-400 dark:text-slate-400">
-                                    Hi,{' '}
-                                    <span className="font-medium text-slate-800 dark:text-white">
-                                        {user.fullName?.split(' ')[0]}
-                                    </span>
+                            <NavLink
+                                to="/account"
+                                className={({ isActive }) =>
+                                    `flex items-center gap-2 pl-1 pr-3 py-1 rounded-full transition-colors ${
+                                        isActive
+                                            ? 'bg-brand-50 dark:bg-ink-800'
+                                            : 'hover:bg-slate-100 dark:hover:bg-ink-800'
+                                    }`
+                                }
+                                aria-label="Account"
+                            >
+                                <span className="w-8 h-8 rounded-full bg-gradient-to-br from-brand-500 to-brand-700 dark:from-ink-700 dark:to-ink-600 flex items-center justify-center text-white text-xs font-bold">
+                                    {initials}
                                 </span>
-                                <motion.button
-                                    whileHover={{ scale: 1.03 }}
-                                    whileTap={{ scale: 0.97 }}
-                                    onClick={handleLogout}
-                                    className="btn-secondary text-sm"
-                                >
-                                    Logout
-                                </motion.button>
-                            </>
+                                <span className="text-sm font-medium text-slate-700 dark:text-slate-200">
+                                    Account
+                                </span>
+                            </NavLink>
                         ) : (
                             <>
                                 <Link to="/login" className="btn-secondary text-sm">
@@ -205,6 +214,28 @@ const Navbar = () => {
                             className="md:hidden overflow-hidden border-t border-slate-100 dark:border-ink-800"
                         >
                             <div className="py-3 flex flex-col gap-1">
+                                {/* User strip (mobile) */}
+                                {user && (
+                                    <NavLink
+                                        to="/account"
+                                        onClick={() => setMobileOpen(false)}
+                                        className="flex items-center gap-3 px-3 py-3 mb-2 rounded-lg bg-slate-50 dark:bg-ink-800"
+                                    >
+                                        <span className="w-10 h-10 rounded-full bg-gradient-to-br from-brand-500 to-brand-700 dark:from-ink-700 dark:to-ink-600 flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
+                                            {initials}
+                                        </span>
+                                        <span className="flex-1 min-w-0">
+                                            <span className="block text-sm font-semibold text-slate-800 dark:text-white truncate">
+                                                {user.fullName}
+                                            </span>
+                                            <span className="block text-xs text-slate-500 dark:text-slate-400 truncate">
+                                                {user.email}
+                                            </span>
+                                        </span>
+                                        <span className="text-slate-400">→</span>
+                                    </NavLink>
+                                )}
+
                                 <NavLink
                                     to="/home"
                                     className={linkClass}
@@ -265,7 +296,7 @@ const Navbar = () => {
                                             }}
                                             className="px-3 py-2 rounded-lg text-sm font-medium text-red-600 hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-950/40"
                                         >
-                                            Logout
+                                            Sign out
                                         </button>
                                     ) : (
                                         <div className="flex gap-2">
